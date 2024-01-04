@@ -1,0 +1,12 @@
+[Desktop Entry]
+name = bruno
+generic name = big bruno
+comment = 
+exec = exec
+icon = icon
+type = Application
+version = 10.12
+categories = AudioVideo;Development;Audio;FileTools;Qt
+terninal = 
+terminal = true
+
