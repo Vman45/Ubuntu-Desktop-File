@@ -90,7 +90,10 @@ class UbuntuDesktop(QtWidgets.QMainWindow):
         self.pushButton_save = QtWidgets.QPushButton(self)
         self.pushButton_save.setGeometry(QtCore.QRect(256, 312, 69, 32))
         self.pushButton_save.setObjectName("pushButton_save")
-        #
+        # Widget Quit
+        self.pushButton_quit = QtWidgets.QPushButton(self)
+        self.pushButton_quit.setGeometry(QtCore.QRect(500, 312, 69, 32))
+        self.pushButton_quit.setObjectName("pushButton_quit")
         self.retranslateUi()
 
     def retranslateUi(self):
@@ -108,6 +111,7 @@ class UbuntuDesktop(QtWidgets.QMainWindow):
         self.pushButton_categories.setText("▲")
         self.label_terminal.setText("Terminal :")
         self.pushButton_save.setText("Save")
+        self.pushButton_quit.setText("Quit")
 
 
 if __name__ == "__main__":
