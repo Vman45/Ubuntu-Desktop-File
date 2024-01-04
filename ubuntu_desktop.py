@@ -71,7 +71,7 @@ class CollectDatas(UbuntuDesktop):
         dial = DialogOpen("", "Destination File Desktop", "", "")
         dir = dial.openDir()
         if dir:
-            with open(f"{dir}{file_name}.desktop", "w") as f:
+            with open(f"{dir}/{file_name}.desktop", "w") as f:
                 parser.write(f)
 
 
