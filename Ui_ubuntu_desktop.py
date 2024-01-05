@@ -92,7 +92,7 @@ class UbuntuDesktop(QtWidgets.QMainWindow):
         self.pushButton_save.setObjectName("pushButton_save")
         # Widget Quit
         self.pushButton_quit = QtWidgets.QPushButton(self)
-        self.pushButton_quit.setGeometry(QtCore.QRect(500, 312, 69, 32))
+        self.pushButton_quit.setGeometry(QtCore.QRect(490, 312, 69, 32))
         self.pushButton_quit.setObjectName("pushButton_quit")
         self.retranslateUi()
 

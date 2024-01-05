@@ -15,7 +15,7 @@ class UiCategories(QtWidgets.QDialog):
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
 
         checkbox_info = {
-            "checkBox": ("AudioVideo", 0, 0),
+            "checkBox_1": ("AudioVideo", 0, 0),
             "checkBox_2": ("Audio", 1, 0),
             "checkBox_3": ("Development", 2, 0),
             "checkBox_4": ("Education", 3, 0),
