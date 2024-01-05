@@ -37,36 +37,39 @@ class CollectDatas(UbuntuDesktop):
         }
         self.save_desktop_file()
 
-    def open_file_dialog(self, title):
+    def open_dialog(self, title, dialog_type):
         dial = DialogOpen("", title, "", "")
-        return dial.openFile()
+        return dial.openFile() if dialog_type == "file" else dial.openDir()
 
-    def open_directory_dialog(self, title):
-        dial = DialogOpen("", title, "", "")
-        return dial.openDir()
+    def update_line_edit(self, line_edit, dialog_type, title):
+        result = self.open_dialog(title, dialog_type)
+        if result:
+            line_edit.setText(result)
 
     def get_exec(self):
-        bin_file = self.open_file_dialog("Select Binary File")
-        if bin_file:
-            self.lineEdit_exec.setText(bin_file)
+        self.update_line_edit(self.lineEdit_exec, "file", "Select Binary File")
 
     def get_icon(self):
-        icon_file = self.open_file_dialog("Select Icon File")
-        if icon_file:
-            self.lineEdit_icon.setText(icon_file)
+        self.update_line_edit(self.lineEdit_icon, "file", "Select Icon File")
 
     def get_categories(self):
         self.categories = UiCategories(self)
 
     def save_desktop_file(self):
-        folder = self.open_directory_dialog("Destination File Desktop")
+        folder = self.open_dialog("Destination File Desktop", "dir")
         if folder:
             file_name = self.dict_datas["Name"]
-            with open(os.path.join(folder, f"{file_name}.desktop"), "w") as f:
-                f.write("[Desktop Entry]\n")
-                for k, v in self.dict_datas.items():
-                    f.write(f"{k}={v}\n")
-                QtWidgets.QMessageBox.information(self, "", "Desktop File Saved")
+            try:
+                with open(os.path.join(folder, f"{file_name}.desktop"), "w") as f:
+                    f.write("[Desktop Entry]\n")
+                    for k, v in self.dict_datas.items():
+                        f.write(f"{k}={v}\n")
+                    self.show_message("Desktop File Saved")
+            except Exception:
+                self.show_message("Impossible de copier le fichier !!")
+
+    def show_message(self, message):
+        QtWidgets.QMessageBox.information(self, "title", message)
 
 
 if __name__ == "__main__":
