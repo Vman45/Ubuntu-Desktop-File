@@ -22,7 +22,7 @@ class CollectDatas(UbuntuDesktop):
         self.pushButton_exec.clicked.connect(self.get_exec)
         self.pushButton_icon.clicked.connect(self.get_icon)
         self.pushButton_save.clicked.connect(self.get_all_datas)
-        self.pushButton_quit.clicked.connect(sys.exit)
+        self.pushButton_quit.clicked.connect(app.exit)
         self.pushButton_categories.clicked.connect(self.get_categories)
 
 
@@ -58,8 +58,7 @@ class CollectDatas(UbuntuDesktop):
         self.categories = UiCategories(self)
 
     def save_desktop_file(self):
-        folder = self.open_dialog("dir", "Destination Desktop File")
-        if folder:
+        if folder := self.open_dialog("dir", "Destination Desktop File"):
             file_name = self.dict_datas["Name"]
             try:
                 with open(os.path.join(folder, f"{file_name}.desktop"), "w") as f:

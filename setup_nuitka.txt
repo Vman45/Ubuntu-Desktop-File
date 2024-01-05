@@ -1,0 +1,2 @@
+cd /home/diablo/Documents/GitHub/Ubuntu-Desktop
+python3.10 -m nuitka --deployment --onefile --enable-plugin=pyqt5 ubuntu_desktop.py
