@@ -3,7 +3,7 @@
 from PyQt5 import QtCore, QtWidgets
 
 
-class UiCategories(QtWidgets.QWidget):
+class UiCategories(QtWidgets.QDialog):
     def __init__(self, parent) -> None:
         super().__init__()
         self.parent = parent
@@ -66,7 +66,7 @@ class UiCategories(QtWidgets.QWidget):
         self.pushButton.setObjectName("pushButton")
         self.retranslateUi()
         QtCore.QMetaObject.connectSlotsByName(self)
-        self.show()
+        self.exec_()
 
     def retranslateUi(self):
         self.setWindowTitle("Select your categories")

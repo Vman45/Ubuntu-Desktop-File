@@ -8,11 +8,13 @@ from Ui_ubuntu_desktop import UbuntuDesktop
 from Ui_ubuntu_desktop_cat import UiCategories
 from qt_dialog import DialogOpen
 
+__version__ = "1.0.3"
 
 class CollectDatas(UbuntuDesktop):
     def __init__(self) -> None:
         super().__init__()
         self.dict_datas = {}
+        self.title = "Ubuntu Desktop File"
         self.file_desktop = ""
         # Default Type
         self.lineEdit_type.setText("Application")
@@ -64,12 +66,12 @@ class CollectDatas(UbuntuDesktop):
                     f.write("[Desktop Entry]\n")
                     for k, v in self.dict_datas.items():
                         f.write(f"{k}={v}\n")
-                    self.show_message("Desktop File Saved")
-            except Exception:
-                self.show_message("Impossible de copier le fichier !!")
+                    self.show_message(self.title, f"File {file_name} Saved in {folder}")
+            except Exception as er:
+                self.show_message(self.title, f"Unable to create file !! {er}")
 
-    def show_message(self, message):
-        QtWidgets.QMessageBox.information(self, "title", message)
+    def show_message(self, title, message):
+        QtWidgets.QMessageBox.information(self, title, message)
 
 
 if __name__ == "__main__":
