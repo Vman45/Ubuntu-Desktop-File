@@ -28,7 +28,7 @@ class CollectDatas(UbuntuDesktop):
     def get_all_datas(self):
         self.dict_datas = {
             "Name": self.lineEdit_name.text(),
-            "Generic Name": self.lineEdit_generic_name.text(),
+            "GenericName": self.lineEdit_generic_name.text(),
             "Comment": self.lineEdit_comment.text(),
             "Exec": self.lineEdit_exec.text(),
             "Icon": self.lineEdit_icon.text(),
@@ -64,11 +64,13 @@ class CollectDatas(UbuntuDesktop):
         folder = self.open_directory_dialog("Destination File Desktop")
         if folder:
             file_name = self.dict_datas["Name"]
-            parser = configparser.ConfigParser()
-            parser.read_dict({"Desktop Entry": self.dict_datas})
+            
+            
             with open(os.path.join(folder, f"{file_name}.desktop"), "w") as f:
-                parser.write(f)
-            QtWidgets.QMessageBox.information(self, "", "Desktop File Saved")
+                f.write("[Desktop Entry]\n")
+                for k, v in self.dict_datas.items():
+                    f.write(f"{k}={v}\n")
+                QtWidgets.QMessageBox.information(self, "", "Desktop File Saved")
 
 
 if __name__ == "__main__":
