@@ -25,6 +25,7 @@ class CollectDatas(UbuntuDesktop):
         self.pushButton_quit.clicked.connect(sys.exit)
         self.pushButton_categories.clicked.connect(self.get_categories)
 
+
     def get_all_datas(self):
         self.dict_datas = {
             "Name": self.lineEdit_name.text(),
