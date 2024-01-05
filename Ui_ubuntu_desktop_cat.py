@@ -8,9 +8,9 @@ class UiCategories(QtWidgets.QWidget):
         super().__init__()
         self.parent = parent
         self.setObjectName("UiCategories")
-        self.resize(342, 207)
+        self.resize(402, 207)
         self.gridLayoutWidget = QtWidgets.QWidget(self)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(8, 8, 325, 165))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(8, 8, 385, 165))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
