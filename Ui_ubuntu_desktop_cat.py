@@ -38,7 +38,7 @@ class UiCategories(QtWidgets.QDialog):
 
         self.pushButton = QtWidgets.QPushButton(self)
         self.pushButton.setText("Ok")
-        self.pushButton.setGeometry(QtCore.QRect(132, 172, 85, 32))
+        self.pushButton.setGeometry(QtCore.QRect(165, 172, 85, 32))
         self.pushButton.clicked.connect(self.get_type_categories)
         self.exec_()
 
