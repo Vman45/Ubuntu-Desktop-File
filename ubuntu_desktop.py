@@ -8,7 +8,7 @@ from Ui_ubuntu_desktop import UbuntuDesktop
 from Ui_ubuntu_desktop_cat import UiCategories
 from qt_dialog import DialogOpen
 
-__version__ = "1.0.3"
+__version__ = "1.0.2"
 
 class CollectDatas(UbuntuDesktop):
     def __init__(self) -> None:
