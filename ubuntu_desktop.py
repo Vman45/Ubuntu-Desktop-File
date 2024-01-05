@@ -1,6 +1,7 @@
 # -*- Coding: utf-8 -*-
 # Created by Diablo76 on 04/01/2024 -- 00:44:10.
 # Copyright © 2024 Diablo76. All rights reserved.
+
 import sys
 import os
 from PyQt5 import QtWidgets
@@ -63,8 +64,7 @@ class CollectDatas(UbuntuDesktop):
             try:
                 with open(os.path.join(folder, f"{file_name}.desktop"), "w") as f:
                     f.write("[Desktop Entry]\n")
-                    for k, v in self.dict_datas.items():
-                        f.write(f"{k}={v}\n")
+                    f.writelines(f"{k}={v}\n" for k, v in self.dict_datas.items())
                     self.show_message(self.title, f"File {file_name} Saved in {folder}")
             except Exception as er:
                 self.show_message(self.title, f"Unable to create file !! {er}")

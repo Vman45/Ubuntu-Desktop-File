@@ -17,16 +17,15 @@ class DialogOpen(QtWidgets.QFileDialog):
         self.titre = titre
         self.repertoire = repertoire
         self.filtres = filtres
-        self.setFilter(QtWidgets.QFileDialog.DontUseNativeDialog)
         
     def openFile(self):
         fileName = self.getOpenFileName(None, self.titre, self.repertoire,
-                                        self.filtres, "")
+                                        self.filtres, "", self.DontUseNativeDialog)
         return(fileName[0])
 
     def openDir(self):
         return self.getExistingDirectory(
-            None, self.titre, self.repertoire
+            None, self.titre, self.repertoire, self.DontUseNativeDialog
         )
     
     def saveFile(self):
