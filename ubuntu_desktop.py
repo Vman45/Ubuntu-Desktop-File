@@ -3,9 +3,7 @@
 # Copyright © 2024 Diablo76. All rights reserved.
 import sys
 import os
-from tkinter import NO
 from PyQt5 import QtWidgets
-import configparser
 from Ui_ubuntu_desktop import UbuntuDesktop
 from Ui_ubuntu_desktop_cat import UiCategories
 from qt_dialog import DialogOpen
@@ -64,8 +62,6 @@ class CollectDatas(UbuntuDesktop):
         folder = self.open_directory_dialog("Destination File Desktop")
         if folder:
             file_name = self.dict_datas["Name"]
-            
-            
             with open(os.path.join(folder, f"{file_name}.desktop"), "w") as f:
                 f.write("[Desktop Entry]\n")
                 for k, v in self.dict_datas.items():
