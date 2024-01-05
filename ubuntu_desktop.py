@@ -45,8 +45,7 @@ class CollectDatas(UbuntuDesktop):
         return dial.openFile() if dialog_type == "file" else dial.openDir()
 
     def update_line_edit(self, line_edit, dialog_type, title):
-        result = self.open_dialog(dialog_type, title)
-        if result:
+        if result := self.open_dialog(dialog_type, title):
             line_edit.setText(result)
 
     def get_exec(self):

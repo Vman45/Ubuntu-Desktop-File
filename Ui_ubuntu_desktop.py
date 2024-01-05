@@ -8,6 +8,7 @@ class UbuntuDesktop(QtWidgets.QMainWindow):
         super().__init__()
         self.setObjectName("ubuntu_desktop")
         self.resize(573, 355)
+        self.setWindowIcon(QtGui.QIcon("Ubuntu_logo.png"))
         self.gridLayoutWidget = QtWidgets.QWidget(self)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(8, 8, 557, 305))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
