@@ -40,12 +40,12 @@ class CollectDatas(UbuntuDesktop):
         }
         self.save_desktop_file()
 
-    def open_dialog(self, title, dialog_type):
+    def open_dialog(self, dialog_type, title, ):
         dial = DialogOpen("", title, "", "")
         return dial.openFile() if dialog_type == "file" else dial.openDir()
 
     def update_line_edit(self, line_edit, dialog_type, title):
-        result = self.open_dialog(title, dialog_type)
+        result = self.open_dialog(dialog_type, title)
         if result:
             line_edit.setText(result)
 
@@ -59,7 +59,7 @@ class CollectDatas(UbuntuDesktop):
         self.categories = UiCategories(self)
 
     def save_desktop_file(self):
-        folder = self.open_dialog("Destination File Desktop", "dir")
+        folder = self.open_dialog("dir", "Destination Desktop File")
         if folder:
             file_name = self.dict_datas["Name"]
             try:
