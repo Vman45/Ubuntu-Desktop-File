@@ -60,10 +60,11 @@ class CollectDatas(UiUbuntuDesktop):
         try:
             with open(os.path.join(folder, f"{file_name}.desktop"), "w") as f:
                 f.write("[Desktop Entry]\n")
+                f.write("StartupNotify=true\n")
                 for k, v in self.dict_datas.items():
                     f.write(f"{k}={v}\n")
             return True
-        except Exception as er:
+        except IOError as er:
             self.show_message(self.title, f"Unable to create file !! {er}")
             return False
 
