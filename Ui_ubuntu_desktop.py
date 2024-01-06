@@ -95,13 +95,21 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.checkBox_directory.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.checkBox_directory.setObjectName("checkBox_directory")
         self.gridLayout.addWidget(self.checkBox_directory, 9, 2, 1, 1)
+        # Widgets Directory
+        self.label_startup = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.label_startup.setObjectName("label_startup")
+        self.gridLayout.addWidget(self.label_startup, 10, 0, 1, 1)
+        self.checkBox_startup = QtWidgets.QCheckBox(self.gridLayoutWidget)
+        self.checkBox_startup.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.checkBox_startup.setObjectName("checkBox_startup")
+        self.gridLayout.addWidget(self.checkBox_startup, 10, 2, 1, 1)
         # Widget Save
         self.pushButton_save = QtWidgets.QPushButton(self)
         self.pushButton_save.setGeometry(QtCore.QRect(352, 312, 68, 32))
         self.pushButton_save.setObjectName("pushButton_save")
         # Widget Quit
         self.pushButton_quit = QtWidgets.QPushButton(self)
-        self.pushButton_quit.setGeometry(QtCore.QRect(690, 312, 68, 32))
+        self.pushButton_quit.setGeometry(QtCore.QRect(688, 312, 68, 32))
         self.pushButton_quit.setObjectName("pushButton_quit")
         self.retranslateUi()
 
@@ -118,6 +126,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.pushButton_icon.setText("...")
         self.label_categories.setText("Categories :")
         self.label_directory.setText("Working directory :")
+        self.label_startup.setText("Startup Notify :")
         self.pushButton_categories.setText("...")
         self.label_terminal.setText("Terminal :")
         self.pushButton_save.setText("Save")

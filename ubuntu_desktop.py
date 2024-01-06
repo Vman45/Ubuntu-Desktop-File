@@ -37,7 +37,8 @@ class CollectDatas(UiUbuntuDesktop):
             "Version": self.lineEdit_version.text(),
             "Categories": self.lineEdit_categories.text(),
             "Terminal": "true" if self.checkBox_terminal.isChecked() else "false",
-            "Path": os.path.dirname(self.lineEdit_exec.text()) if self.checkBox_directory.isChecked() else ""
+            "Path": os.path.dirname(self.lineEdit_exec.text()) if self.checkBox_directory.isChecked() else "",
+            "StartupNotify": "true" if self.checkBox_startup.isChecked() else "false",
         }
         self.save_desktop_file()
 
@@ -54,15 +55,13 @@ class CollectDatas(UiUbuntuDesktop):
             self.lineEdit_icon.setText(icon_name)
 
     def get_categories(self):
-        self.categories = UiCategories(self)
+        UiCategories(self)
 
     def write_desktop_file(self, folder, file_name):
         try:
+            datas = "[Desktop Entry]\n" + "\n".join(f"{key}={value}" for key, value in self.dict_datas.items())
             with open(os.path.join(folder, f"{file_name}.desktop"), "w") as f:
-                f.write("[Desktop Entry]\n")
-                f.write("StartupNotify=true\n")
-                for k, v in self.dict_datas.items():
-                    f.write(f"{k}={v}\n")
+                f.write(datas)
             return True
         except IOError as er:
             self.show_message(self.title, f"Unable to create file !! {er}")
