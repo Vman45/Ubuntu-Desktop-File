@@ -1,6 +1,6 @@
 ''' Sélecteur de fichiers et répertoires '''
 # -*- coding: utf-8 -*-
-# le 05/07/2018 Copyright B.Fiquet
+# le 05/07/2018 Copyright Diablo76
 # Sélecteur de fichiers et répertoires V1.0.0
 
 from PyQt5 import QtWidgets
