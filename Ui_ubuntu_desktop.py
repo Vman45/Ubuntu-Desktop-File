@@ -3,7 +3,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class UbuntuDesktop(QtWidgets.QMainWindow):
+class UiUbuntuDesktop(QtWidgets.QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setObjectName("ubuntu_desktop")
@@ -128,6 +128,6 @@ if __name__ == "__main__":
     import sys
 
     app = QtWidgets.QApplication(sys.argv)
-    window = UbuntuDesktop()
+    window = UiUbuntuDesktop()
     window.show()
     sys.exit(app.exec_())
