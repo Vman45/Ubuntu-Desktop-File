@@ -50,25 +50,25 @@ class CollectDatas(UbuntuDesktop):
         return dial.openDir()
 
     def get_exec(self):
-        if result := self.open_file_dialog("Sélectionner le fichier binaire"):
+        if result := self.open_file_dialog("Select binary file"):
             self.lineEdit_exec.setText(result)
 
     def get_icon(self):
-        if result := self.open_file_dialog("Sélectionner le fichier d'icône"):
+        if result := self.open_file_dialog("Select icon file"):
             self.lineEdit_icon.setText(result)
 
     def get_categories(self):
         self.categories = UiCategories(self)
 
     def save_desktop_file(self):
-        if folder := self.open_directory_dialog("Destination File Desktop"):
+        if folder := self.open_directory_dialog("Destination Desktop File"):
             file_name = self.dict_datas["Name"]
             try:
                 with open(os.path.join(folder, f"{file_name}.desktop"), "w") as f:
                     f.write("[Desktop Entry]\n")
                     for k, v in self.dict_datas.items():
                         f.write(f"{k}={v}\n")
-                    self.show_message(self.title, f"File {file_name} Saved in {folder}")
+                self.show_message(self.title, f"File {file_name} Saved in {folder}")
             except Exception as er:
                 self.show_message(self.title, f"Unable to create file !! {er}")
 
