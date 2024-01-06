@@ -37,34 +37,31 @@ class CollectDatas(UbuntuDesktop):
             "Version": self.lineEdit_version.text(),
             "Categories": self.lineEdit_categories.text(),
             "Terminal": "true" if self.checkBox_terminal.isChecked() else "false",
+            "Path": os.path.dirname(self.lineEdit_exec.text()) if self.checkBox_directory.isChecked() else ""
         }
         self.save_desktop_file()
 
-    def open_dialog(self, title, dialog_type):
+    def open_file_dialog(self, title):
         dial = DialogOpen("", title, "", "")
         return dial.openFile()
 
-    def update_line_edit(self, line_edit, dialog_type, title):
-        result = self.open_dialog(title, dialog_type)
-        if result:
-            line_edit.setText(result)
+    def open_directory_dialog(self, title):
+        dial = DialogOpen("", title, "", "")
+        return dial.openDir()
 
     def get_exec(self):
-        result = self.open_file_dialog("Select binary file")
-        if result:
+        if result := self.open_file_dialog("Sélectionner le fichier binaire"):
             self.lineEdit_exec.setText(result)
 
     def get_icon(self):
-        result = self.open_file_dialog("Select icon file")
-        if result:
+        if result := self.open_file_dialog("Sélectionner le fichier d'icône"):
             self.lineEdit_icon.setText(result)
 
     def get_categories(self):
         self.categories = UiCategories(self)
 
     def save_desktop_file(self):
-        folder = self.open_dialog("Destination File Desktop", "dir")
-        if folder:
+        if folder := self.open_directory_dialog("Destination File Desktop"):
             file_name = self.dict_datas["Name"]
             try:
                 with open(os.path.join(folder, f"{file_name}.desktop"), "w") as f:
