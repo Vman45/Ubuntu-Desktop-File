@@ -7,7 +7,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setObjectName("ubuntu_desktop")
-        self.resize(772, 355)
+        self.setFixedSize(772, 355)
         self.setWindowIcon(QtGui.QIcon("Ubuntu_logo.png"))
         self.gridLayoutWidget = QtWidgets.QWidget(self)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(8, 8, 756, 305))

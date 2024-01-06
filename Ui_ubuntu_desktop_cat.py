@@ -8,7 +8,7 @@ class UiCategories(QtWidgets.QDialog):
         super().__init__()
         self.setWindowTitle("Select your categories")
         self.parent = parent
-        self.resize(602, 207)
+        self.setFixedSize(602, 207)
         self.gridLayoutWidget = QtWidgets.QWidget(self)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(8, 8, 585, 165))
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
