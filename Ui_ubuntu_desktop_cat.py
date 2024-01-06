@@ -4,7 +4,7 @@ from PyQt5 import QtCore, QtWidgets
 
 
 class UiCategories(QtWidgets.QDialog):
-    def __init__(self, parent) -> None:
+    def __init__(self, parent=None) -> None:
         super().__init__()
         self.setWindowTitle("Select your categories")
         self.parent = parent
@@ -38,3 +38,10 @@ class UiCategories(QtWidgets.QDialog):
         ]
         self.parent.lineEdit_categories.setText(";".join(list_categories))
         self.close()
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    window = UiCategories()
+    window.show()
+    sys.exit(app.exec_())
