@@ -8,38 +8,25 @@ class UiCategories(QtWidgets.QDialog):
         super().__init__()
         self.setWindowTitle("Select your categories")
         self.parent = parent
-        self.resize(402, 207)
+        self.resize(602, 207)
         self.gridLayoutWidget = QtWidgets.QWidget(self)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(8, 8, 385, 165))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(8, 8, 585, 165))
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
 
-        checkbox_info = {
-            "checkBox_1": ("AudioVideo", 0, 0),
-            "checkBox_2": ("Audio", 1, 0),
-            "checkBox_3": ("Building", 2, 0),
-            "checkBox_4": ("DesktopSettings", 3, 0),
-            "checkBox_5": ("Development", 4, 0),
-            "checkBox_6": ("Education",0, 1),
-            "checkBox_7": ("Game", 1, 1),
-            "checkBox_8": ("Graphics", 2, 1),
-            "checkBox_9": ("Network", 3, 1),
-            "checkBox_10": ("Office", 4, 1),
-            "checkBox_11": ("Qt", 0, 2),
-            "checkBox_12": ("Settings",1, 2),
-            "checkBox_13": ("System", 2, 2),
-            "checkBox_14": ("TextEditor",3, 2),
-             "checkBox_15": ("Utility", 4, 2),
-           
-        }
-        for text, row, col in checkbox_info.values():
+        categories = ["AudioVideo", "Audio", "Building", "DesktopSettings", "Development",
+                "Education", "Game", "Graphics", "Network", "Office",
+                "Qt", "Settings", "System", "TextEditor", "Utility"]
+        
+        for index, category in enumerate(categories):
+            row, col = divmod(index, 5)
             checkbox = QtWidgets.QCheckBox(self.gridLayoutWidget)
-            checkbox.setText(text)
+            checkbox.setText(category)
             self.gridLayout.addWidget(checkbox, row, col, 1, 1)
 
         self.pushButton = QtWidgets.QPushButton(self)
         self.pushButton.setText("Ok")
-        self.pushButton.setGeometry(QtCore.QRect(165, 172, 85, 32))
+        self.pushButton.setGeometry(QtCore.QRect(276, 172, 85, 32))
         self.pushButton.clicked.connect(self.get_type_categories)
         self.exec_()
 
@@ -51,6 +38,3 @@ class UiCategories(QtWidgets.QDialog):
         ]
         self.parent.lineEdit_categories.setText(";".join(list_categories))
         self.close()
-
-    def exec_(self) -> int:
-        return super().exec_()
