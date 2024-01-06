@@ -27,7 +27,7 @@ class UiCategories(QtWidgets.QDialog):
             "checkBox_10": ("Utility", 0, 2),
             "checkBox_11": ("Building", 1, 2),
             "checkBox_12": ("DesktopSettings", 2, 1),
-            "checkBox_13": ("FileTools", 3, 2),
+            "checkBox_13": ("System", 3, 2),
             "checkBox_14": ("TextEditor", 2, 2),
             "checkBox_15": ("Qt", 4, 2),
         }

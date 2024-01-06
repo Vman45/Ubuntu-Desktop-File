@@ -7,7 +7,7 @@ import os
 from PyQt5 import QtWidgets
 from Ui_ubuntu_desktop import UiUbuntuDesktop
 from Ui_ubuntu_desktop_cat import UiCategories
-from qt_dialog import DialogOpen
+from qt_file_dialog import DialogOpen
 
 __version__ = "1.0.3"
 
