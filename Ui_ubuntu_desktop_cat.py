@@ -17,19 +17,20 @@ class UiCategories(QtWidgets.QDialog):
         checkbox_info = {
             "checkBox_1": ("AudioVideo", 0, 0),
             "checkBox_2": ("Audio", 1, 0),
-            "checkBox_3": ("Development", 2, 0),
-            "checkBox_4": ("Education", 3, 0),
-            "checkBox_5": ("Game", 4, 0),
-            "checkBox_6": ("Graphics", 0, 1),
-            "checkBox_7": ("Network", 1, 1),
-            "checkBox_8": ("Office", 3, 1),
-            "checkBox_9": ("Settings", 4, 1),
-            "checkBox_10": ("Utility", 0, 2),
-            "checkBox_11": ("Building", 1, 2),
-            "checkBox_12": ("DesktopSettings", 2, 1),
-            "checkBox_13": ("System", 3, 2),
-            "checkBox_14": ("TextEditor", 2, 2),
-            "checkBox_15": ("Qt", 4, 2),
+            "checkBox_3": ("Building", 2, 0),
+            "checkBox_4": ("DesktopSettings", 3, 0),
+            "checkBox_5": ("Development", 4, 0),
+            "checkBox_6": ("Education",0, 1),
+            "checkBox_7": ("Game", 1, 1),
+            "checkBox_8": ("Graphics", 2, 1),
+            "checkBox_9": ("Network", 3, 1),
+            "checkBox_10": ("Office", 4, 1),
+            "checkBox_11": ("Qt", 0, 2),
+            "checkBox_12": ("Settings",1, 2),
+            "checkBox_13": ("System", 2, 2),
+            "checkBox_14": ("TextEditor",3, 2),
+             "checkBox_15": ("Utility", 4, 2),
+           
         }
         for text, row, col in checkbox_info.values():
             checkbox = QtWidgets.QCheckBox(self.gridLayoutWidget)
@@ -45,13 +46,11 @@ class UiCategories(QtWidgets.QDialog):
     def get_type_categories(self):
         list_categories = [
             check_box.text()
-            for check_box in self.gridLayoutWidget.findChildren(
-                QtWidgets.QCheckBox
-            )
+            for check_box in self.gridLayoutWidget.findChildren(QtWidgets.QCheckBox)
             if check_box.isChecked()
         ]
         self.parent.lineEdit_categories.setText(";".join(list_categories))
         self.close()
-        
+
     def exec_(self) -> int:
         return super().exec_()
