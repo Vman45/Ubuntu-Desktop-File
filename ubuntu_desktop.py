@@ -1,6 +1,7 @@
 # -*- Coding: utf-8 -*-
 # Created by Diablo76 on 04/01/2024 -- 00:44:10.
 # Copyright © 2024 Diablo76. All rights reserved.
+
 import sys
 import os
 from PyQt5 import QtWidgets
@@ -9,7 +10,6 @@ from Ui_ubuntu_desktop_cat import UiCategories
 from qt_dialog import DialogOpen
 
 __version__ = "1.0.3"
-
 
 class CollectDatas(UbuntuDesktop):
     def __init__(self) -> None:
@@ -23,7 +23,7 @@ class CollectDatas(UbuntuDesktop):
         self.pushButton_exec.clicked.connect(self.get_exec)
         self.pushButton_icon.clicked.connect(self.get_icon)
         self.pushButton_save.clicked.connect(self.get_all_datas)
-        self.pushButton_quit.clicked.connect(sys.exit)
+        self.pushButton_quit.clicked.connect(app.exit)
         self.pushButton_categories.clicked.connect(self.get_categories)
 
     def get_all_datas(self):
@@ -40,13 +40,14 @@ class CollectDatas(UbuntuDesktop):
         }
         self.save_desktop_file()
 
-    def open_file_dialog(self, title):
+    def open_dialog(self, title, dialog_type):
         dial = DialogOpen("", title, "", "")
         return dial.openFile()
 
-    def open_directory_dialog(self, title):
-        dial = DialogOpen("", title, "", "")
-        return dial.openDir()
+    def update_line_edit(self, line_edit, dialog_type, title):
+        result = self.open_dialog(title, dialog_type)
+        if result:
+            line_edit.setText(result)
 
     def get_exec(self):
         result = self.open_file_dialog("Select binary file")
@@ -62,7 +63,7 @@ class CollectDatas(UbuntuDesktop):
         self.categories = UiCategories(self)
 
     def save_desktop_file(self):
-        folder = self.open_directory_dialog("Destination desktop file")
+        folder = self.open_dialog("Destination File Desktop", "dir")
         if folder:
             file_name = self.dict_datas["Name"]
             try:
@@ -70,8 +71,8 @@ class CollectDatas(UbuntuDesktop):
                     f.write("[Desktop Entry]\n")
                     for k, v in self.dict_datas.items():
                         f.write(f"{k}={v}\n")
-                self.show_message(self.title, f"File {file_name} Saved in {folder}")
-            except IOError as er:
+                    self.show_message(self.title, f"File {file_name} Saved in {folder}")
+            except Exception as er:
                 self.show_message(self.title, f"Unable to create file !! {er}")
 
     def show_message(self, title, message):

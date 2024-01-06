@@ -15,7 +15,7 @@ class UiCategories(QtWidgets.QDialog):
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
 
         checkbox_info = {
-            "checkBox": ("AudioVideo", 0, 0),
+            "checkBox_1": ("AudioVideo", 0, 0),
             "checkBox_2": ("Audio", 1, 0),
             "checkBox_3": ("Development", 2, 0),
             "checkBox_4": ("Education", 3, 0),
@@ -38,7 +38,7 @@ class UiCategories(QtWidgets.QDialog):
 
         self.pushButton = QtWidgets.QPushButton(self)
         self.pushButton.setText("Ok")
-        self.pushButton.setGeometry(QtCore.QRect(132, 172, 85, 32))
+        self.pushButton.setGeometry(QtCore.QRect(165, 172, 85, 32))
         self.pushButton.clicked.connect(self.get_type_categories)
         self.exec_()
 

@@ -8,6 +8,7 @@ class UbuntuDesktop(QtWidgets.QMainWindow):
         super().__init__()
         self.setObjectName("ubuntu_desktop")
         self.resize(573, 355)
+        self.setWindowIcon(QtGui.QIcon("Ubuntu_logo.png"))
         self.gridLayoutWidget = QtWidgets.QWidget(self)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(8, 8, 557, 305))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
@@ -92,7 +93,7 @@ class UbuntuDesktop(QtWidgets.QMainWindow):
         self.pushButton_save.setObjectName("pushButton_save")
         # Widget Quit
         self.pushButton_quit = QtWidgets.QPushButton(self)
-        self.pushButton_quit.setGeometry(QtCore.QRect(500, 312, 69, 32))
+        self.pushButton_quit.setGeometry(QtCore.QRect(490, 312, 69, 32))
         self.pushButton_quit.setObjectName("pushButton_quit")
         self.retranslateUi()
 

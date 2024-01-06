@@ -4,7 +4,6 @@
 # Sélecteur de fichiers et répertoires V1.0.0
 
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import QDir
 
 class DialogOpen(QtWidgets.QFileDialog):
     ''' Sélecteur de fichiers et répertoires modale
@@ -25,8 +24,9 @@ class DialogOpen(QtWidgets.QFileDialog):
         return(fileName[0])
 
     def openDir(self):
-        dirName = self.getExistingDirectory(None, self.titre, self.repertoire, self.DontUseNativeDialog)
-        return(dirName)
+        return self.getExistingDirectory(
+            None, self.titre, self.repertoire, self.DontUseNativeDialog
+        )
     
     def saveFile(self):
         fileSave = self.getSaveFileName(None, self.titre, self.repertoire,  self.filtres, "", self.DontUseNativeDialog)
