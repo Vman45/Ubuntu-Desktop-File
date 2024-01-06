@@ -28,17 +28,20 @@ class CollectDatas(UiUbuntuDesktop):
 
     def get_all_datas(self):
         self.dict_datas = {
-            "Name": self.lineEdit_name.text(),
-            "GenericName": self.lineEdit_generic_name.text(),
+            "Categories": self.lineEdit_categories.text(),
             "Comment": self.lineEdit_comment.text(),
             "Exec": self.lineEdit_exec.text(),
+            "GenericName": self.lineEdit_generic_name.text(),
             "Icon": self.lineEdit_icon.text(),
-            "Type": self.lineEdit_type.text(),
-            "Version": self.lineEdit_version.text(),
-            "Categories": self.lineEdit_categories.text(),
-            "Terminal": "true" if self.checkBox_terminal.isChecked() else "false",
+            "Name": self.lineEdit_name.text(),
             "Path": os.path.dirname(self.lineEdit_exec.text()) if self.checkBox_directory.isChecked() else "",
             "StartupNotify": "true" if self.checkBox_startup.isChecked() else "false",
+            "Terminal": "true" if self.checkBox_terminal.isChecked() else "false",
+            "Type": self.lineEdit_type.text(),
+            "Version": self.lineEdit_version.text(),
+            
+            
+            
         }
         self.save_desktop_file()
 
