@@ -10,6 +10,7 @@ from qt_dialog import DialogOpen
 
 __version__ = "1.0.3"
 
+
 class CollectDatas(UbuntuDesktop):
     def __init__(self) -> None:
         super().__init__()
@@ -25,7 +26,6 @@ class CollectDatas(UbuntuDesktop):
         self.pushButton_quit.clicked.connect(sys.exit)
         self.pushButton_categories.clicked.connect(self.get_categories)
 
-
     def get_all_datas(self):
         self.dict_datas = {
             "Name": self.lineEdit_name.text(),
@@ -40,26 +40,29 @@ class CollectDatas(UbuntuDesktop):
         }
         self.save_desktop_file()
 
-    def open_dialog(self, title, dialog_type):
+    def open_file_dialog(self, title):
         dial = DialogOpen("", title, "", "")
-        return dial.openFile() if dialog_type == "file" else dial.openDir()
+        return dial.openFile()
 
-    def update_line_edit(self, line_edit, dialog_type, title):
-        result = self.open_dialog(title, dialog_type)
-        if result:
-            line_edit.setText(result)
+    def open_directory_dialog(self, title):
+        dial = DialogOpen("", title, "", "")
+        return dial.openDir()
 
     def get_exec(self):
-        self.update_line_edit(self.lineEdit_exec, "file", "Select Binary File")
+        result = self.open_file_dialog("Select binary file")
+        if result:
+            self.lineEdit_exec.setText(result)
 
     def get_icon(self):
-        self.update_line_edit(self.lineEdit_icon, "file", "Select Icon File")
+        result = self.open_file_dialog("Select icon file")
+        if result:
+            self.lineEdit_icon.setText(result)
 
     def get_categories(self):
         self.categories = UiCategories(self)
 
     def save_desktop_file(self):
-        folder = self.open_dialog("Destination File Desktop", "dir")
+        folder = self.open_directory_dialog("Destination desktop file")
         if folder:
             file_name = self.dict_datas["Name"]
             try:
@@ -67,8 +70,8 @@ class CollectDatas(UbuntuDesktop):
                     f.write("[Desktop Entry]\n")
                     for k, v in self.dict_datas.items():
                         f.write(f"{k}={v}\n")
-                    self.show_message(self.title, f"File {file_name} Saved in {folder}")
-            except Exception as er:
+                self.show_message(self.title, f"File {file_name} Saved in {folder}")
+            except IOError as er:
                 self.show_message(self.title, f"Unable to create file !! {er}")
 
     def show_message(self, title, message):
