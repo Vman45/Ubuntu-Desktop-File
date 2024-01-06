@@ -21,7 +21,7 @@ class DialogOpen(QtWidgets.QFileDialog):
 
     def openFile(self):
         fileName = self.getOpenFileName(None, self.titre, self.repertoire,
-                                        self.filtres, "", self.DontUseNativeDialog)
+                    self.filtres, "", self.DontUseNativeDialog)
         return(fileName[0])
 
     def openDir(self):
@@ -30,5 +30,6 @@ class DialogOpen(QtWidgets.QFileDialog):
         )
 
     def saveFile(self):
-        fileSave = self.getSaveFileName(None, self.titre, self.repertoire,  self.filtres, "", self.DontUseNativeDialog)
+        fileSave = self.getSaveFileName(None, self.titre, self.repertoire,  
+                    self.filtres, "", self.DontUseNativeDialog)
         return fileSave[0]
