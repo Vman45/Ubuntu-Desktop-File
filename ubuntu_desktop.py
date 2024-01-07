@@ -39,10 +39,7 @@ class CollectDatas(UiUbuntuDesktop):
             "Terminal": "true" if self.checkBox_terminal.isChecked() else "false",
             "Type": self.lineEdit_type.text(),
             "Version": self.lineEdit_version.text(),
-            
-            
-            
-        }
+            }
         self.save_desktop_file()
 
     def open_dialog(self, title, is_directory=False):
