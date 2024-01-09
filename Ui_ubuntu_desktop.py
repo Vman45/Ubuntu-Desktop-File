@@ -80,7 +80,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.gridLayout.addWidget(self.checkBox_startup, 10, 2, 1, 1)
         # Widget Save
         self.pushButton_save = QtWidgets.QPushButton(self)
-        self.pushButton_save.setGeometry(QtCore.QRect(int(self.width()/2)-34, 312, 68, 32))
+        self.pushButton_save.setGeometry(QtCore.QRect(int((self.width()/2)-34), 312, 68, 32))
         # Widget Quit
         self.pushButton_quit = QtWidgets.QPushButton(self)
         self.pushButton_quit.setGeometry(QtCore.QRect(688, 312, 68, 32))
