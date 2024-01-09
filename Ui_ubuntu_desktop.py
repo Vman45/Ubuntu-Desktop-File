@@ -6,7 +6,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class UiUbuntuDesktop(QtWidgets.QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-
+        self.button_icon = QtGui.QIcon("Assets/Images/directory_icon.png")
         self.setFixedSize(772, 355)
         self.setWindowIcon(QtGui.QIcon("Assets/Images/Ubuntu_icon.png"))
         self.gridLayoutWidget = QtWidgets.QWidget(self)
@@ -33,6 +33,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.lineEdit_exec = QtWidgets.QLineEdit(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.lineEdit_exec, 3, 2, 1, 1)
         self.pushButton_exec = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.pushButton_exec.setIcon(self.button_icon)
         self.pushButton_exec.setMaximumSize(40, 25)
         self.gridLayout.addWidget(self.pushButton_exec, 3, 3, 1, 1)
         # Widgets Icon
@@ -41,6 +42,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.lineEdit_icon = QtWidgets.QLineEdit(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.lineEdit_icon, 4, 2, 1, 1)
         self.pushButton_icon = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.pushButton_icon.setIcon(self.button_icon)
         self.pushButton_icon.setMaximumSize(40, 25)
         self.gridLayout.addWidget(self.pushButton_icon, 4, 3, 1, 1)
         # Widgets Type
@@ -59,7 +61,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.lineEdit_categories = QtWidgets.QLineEdit(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.lineEdit_categories, 7, 2, 1, 1)
         self.pushButton_categories = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.pushButton_categories.setMaximumSize(40, 25)
+        self.pushButton_categories.setIcon(self.button_icon)
         self.gridLayout.addWidget(self.pushButton_categories, 7, 3, 1, 1)
         # Widgets Teminal
         self.label_terminal = QtWidgets.QLabel(self.gridLayoutWidget)
@@ -97,12 +99,9 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.label_exec.setText("Exec :")
         self.label_icon.setText("Icon :")
         self.label_comment.setText("Comment :")
-        self.pushButton_exec.setText("▲")
-        self.pushButton_icon.setText("▲")
         self.label_categories.setText("Categories :")
         self.label_directory.setText("Working directory :")
         self.label_startup.setText("Startup Notify :")
-        self.pushButton_categories.setText("▲")
         self.label_terminal.setText("Terminal :")
         self.pushButton_save.setText("Save")
         self.pushButton_quit.setText("Quit")
