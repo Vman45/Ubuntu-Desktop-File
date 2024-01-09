@@ -7,14 +7,11 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
     def __init__(self) -> None:
         super().__init__()
 
-        self.setObjectName("ubuntu_desktop")
         self.setFixedSize(772, 355)
         self.setWindowIcon(QtGui.QIcon("Assets/Images/Ubuntu_icon.png"))
         self.gridLayoutWidget = QtWidgets.QWidget(self)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(8, 8, 756, 305))
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout.setObjectName("gridLayout")
         # Widgets Name
         self.label_name = QtWidgets.QLabel(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.label_name, 0, 0, 1, 1)
@@ -36,6 +33,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.lineEdit_exec = QtWidgets.QLineEdit(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.lineEdit_exec, 3, 2, 1, 1)
         self.pushButton_exec = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.pushButton_exec.setMaximumSize(40, 25)
         self.gridLayout.addWidget(self.pushButton_exec, 3, 3, 1, 1)
         # Widgets Icon
         self.label_icon = QtWidgets.QLabel(self.gridLayoutWidget)
@@ -43,6 +41,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.lineEdit_icon = QtWidgets.QLineEdit(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.lineEdit_icon, 4, 2, 1, 1)
         self.pushButton_icon = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.pushButton_icon.setMaximumSize(40, 25)
         self.gridLayout.addWidget(self.pushButton_icon, 4, 3, 1, 1)
         # Widgets Type
         self.label_type = QtWidgets.QLabel(self.gridLayoutWidget)
@@ -54,11 +53,13 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.gridLayout.addWidget(self.label_version, 6, 0, 1, 1)
         self.lineEdit_version = QtWidgets.QLineEdit(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.lineEdit_version, 6, 2, 1, 1)
+        # Widgets Categories
         self.label_categories = QtWidgets.QLabel(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.label_categories, 7, 0, 1, 1)
         self.lineEdit_categories = QtWidgets.QLineEdit(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.lineEdit_categories, 7, 2, 1, 1)
         self.pushButton_categories = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.pushButton_categories.setMaximumSize(40, 25)
         self.gridLayout.addWidget(self.pushButton_categories, 7, 3, 1, 1)
         # Widgets Teminal
         self.label_terminal = QtWidgets.QLabel(self.gridLayoutWidget)
@@ -72,7 +73,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.checkBox_directory = QtWidgets.QCheckBox(self.gridLayoutWidget)
         self.checkBox_directory.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.gridLayout.addWidget(self.checkBox_directory, 9, 2, 1, 1)
-        # Widgets Directory
+        # Widgets Startup
         self.label_startup = QtWidgets.QLabel(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.label_startup, 10, 0, 1, 1)
         self.checkBox_startup = QtWidgets.QCheckBox(self.gridLayoutWidget)
@@ -84,6 +85,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         # Widget Quit
         self.pushButton_quit = QtWidgets.QPushButton(self)
         self.pushButton_quit.setGeometry(QtCore.QRect(688, 312, 68, 32))
+        #
         self.retranslateUi()
 
     def retranslateUi(self):
@@ -95,12 +97,12 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.label_exec.setText("Exec :")
         self.label_icon.setText("Icon :")
         self.label_comment.setText("Comment :")
-        self.pushButton_exec.setText("..")
-        self.pushButton_icon.setText("..")
+        self.pushButton_exec.setText("▲")
+        self.pushButton_icon.setText("▲")
         self.label_categories.setText("Categories :")
         self.label_directory.setText("Working directory :")
         self.label_startup.setText("Startup Notify :")
-        self.pushButton_categories.setText("..")
+        self.pushButton_categories.setText("▲")
         self.label_terminal.setText("Terminal :")
         self.pushButton_save.setText("Save")
         self.pushButton_quit.setText("Quit")
