@@ -17,7 +17,6 @@ class CollectDatas(UiUbuntuDesktop):
         self.dict_datas = {}
         self.title = "Ubuntu Desktop File"
         self.file_desktop = ""
-        # Default Type
         self.lineEdit_type.setText("Application")
         # Connect pushButton
         self.pushButton_exec.clicked.connect(self.get_exec)
