@@ -17,13 +17,15 @@ class CollectDatas(UiUbuntuDesktop):
         super().__init__()
         self.dict_datas = {}
         self.title = "UDesktopFile"
-        self.lineEdit_type.setText("Application")
         # Connect pushButton
         self.pushButton_exec.clicked.connect(self.get_exec)
         self.pushButton_icon.clicked.connect(self.get_icon)
         self.pushButton_save.clicked.connect(self.get_all_datas)
-        self.pushButton_quit.clicked.connect(app.exit)
+        self.pushButton_quit.clicked.connect(sys.exit)
         self.pushButton_categories.clicked.connect(self.get_categories)
+        self.checkBox_terminal.clicked.connect(self.set_statut_terminal)
+        self.checkBox_startup.clicked.connect(self.set_statut_startup)
+        self.checkBox_directory.clicked.connect(self.set_statut_directory)
 
     def get_all_datas(self):
         self.dict_datas = {
@@ -43,6 +45,18 @@ class CollectDatas(UiUbuntuDesktop):
         }
         self.save_desktop_file()
 
+    def set_statut_terminal(self):
+        self.checkBox_terminal.setText(str(self.checkBox_terminal.isChecked()))
+    
+    def set_statut_directory(self):
+        if self.checkBox_directory.isChecked():
+            self.checkBox_directory.setText(os.path.dirname(self.lineEdit_exec.text()))
+        else:
+            self.checkBox_directory.setText("")
+
+    def set_statut_startup(self):
+        self.checkBox_startup.setText(str(self.checkBox_startup.isChecked()))
+
     def open_dialog(self, title):
         dialog = DialogOpen("", title, "", "")
         return dialog.openFile()
@@ -56,6 +70,7 @@ class CollectDatas(UiUbuntuDesktop):
     def get_exec(self):
         if binary_name := self.open_dialog("Select binary file"):
             self.lineEdit_exec.setText(binary_name)
+            self.set_statut_directory()
 
     def get_icon(self):
         if icon_name := self.open_dialog("Select icon file"):

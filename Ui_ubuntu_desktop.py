@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -68,18 +69,21 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.label_terminal = QtWidgets.QLabel(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.label_terminal, 8, 0, 1, 1)
         self.checkBox_terminal = QtWidgets.QCheckBox(self.gridLayoutWidget)
+        self.checkBox_terminal.setStyleSheet("color: gray")
         self.checkBox_terminal.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.gridLayout.addWidget(self.checkBox_terminal, 8, 2, 1, 1)
         # Widgets Directory
         self.label_directory = QtWidgets.QLabel(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.label_directory, 9, 0, 1, 1)
         self.checkBox_directory = QtWidgets.QCheckBox(self.gridLayoutWidget)
+        self.checkBox_directory.setStyleSheet("color: gray")
         self.checkBox_directory.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.gridLayout.addWidget(self.checkBox_directory, 9, 2, 1, 1)
         # Widgets Startup
         self.label_startup = QtWidgets.QLabel(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.label_startup, 10, 0, 1, 1)
         self.checkBox_startup = QtWidgets.QCheckBox(self.gridLayoutWidget)
+        self.checkBox_startup.setStyleSheet("color: gray")
         self.checkBox_startup.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.gridLayout.addWidget(self.checkBox_startup, 10, 2, 1, 1)
         # Widget Save
@@ -90,7 +94,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         # Widget Quit
         self.pushButton_quit = QtWidgets.QPushButton(self)
         self.pushButton_quit.setGeometry(QtCore.QRect(688, 312, 68, 32))
-        #
+        # Translate
         self.retranslateUi()
 
     def retranslateUi(self):
@@ -108,6 +112,9 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.label_terminal.setText("Terminal :")
         self.pushButton_save.setText("Save")
         self.pushButton_quit.setText("Quit")
+        self.checkBox_terminal.setText("False")
+        self.checkBox_startup.setText("False")
+        self.lineEdit_type.setText("Application")
 
 
 if __name__ == "__main__":
