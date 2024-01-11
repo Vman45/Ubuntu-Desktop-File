@@ -16,7 +16,7 @@ class CollectDatas(UiUbuntuDesktop):
     def __init__(self) -> None:
         super().__init__()
         self.dict_datas = {}
-        self.title = "Ubuntu Desktop File"
+        self.title = "UDesktopFile"
         self.file_desktop = ""
         self.lineEdit_type.setText("Application")
         # Connect pushButton
@@ -67,11 +67,11 @@ class CollectDatas(UiUbuntuDesktop):
 
     def write_desktop_file(self, destination):
         try:
-            datas = "[Desktop Entry]\n" + "\n".join(
+            datas_file = "[Desktop Entry]\n" + "\n".join(
                 f"{key}={value}" for key, value in self.dict_datas.items()
             )
             with open(destination, "w") as f:
-                f.write(datas)
+                f.write(datas_file)
             return True
         except IOError as er:
             self.show_message(self.title, f"Unable to create file !! {er}")
