@@ -62,6 +62,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.gridLayout.addWidget(self.lineEdit_categories, 7, 2, 1, 1)
         self.pushButton_categories = QtWidgets.QPushButton(self.gridLayoutWidget)
         self.pushButton_categories.setIcon(self.button_icon)
+        self.pushButton_categories.setMaximumSize(40, 25)
         self.gridLayout.addWidget(self.pushButton_categories, 7, 3, 1, 1)
         # Widgets Teminal
         self.label_terminal = QtWidgets.QLabel(self.gridLayoutWidget)
@@ -83,7 +84,9 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.gridLayout.addWidget(self.checkBox_startup, 10, 2, 1, 1)
         # Widget Save
         self.pushButton_save = QtWidgets.QPushButton(self)
-        self.pushButton_save.setGeometry(QtCore.QRect(int((self.width()/2)-34), 312, 68, 32))
+        self.pushButton_save.setGeometry(
+            QtCore.QRect(int((self.width() / 2) - 34), 312, 68, 32)
+        )
         # Widget Quit
         self.pushButton_quit = QtWidgets.QPushButton(self)
         self.pushButton_quit.setGeometry(QtCore.QRect(688, 312, 68, 32))
@@ -109,6 +112,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     window = UiUbuntuDesktop()
     window.show()
