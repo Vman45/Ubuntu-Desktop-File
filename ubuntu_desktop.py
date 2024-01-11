@@ -67,7 +67,7 @@ class CollectDatas(UiUbuntuDesktop):
     def get_exec(self):
         if binary_name := self.open_dialog("Select binary file"):
             self.lineEdit_exec.setText(binary_name)
-            self.set_statut_directory()
+            self.set_path_directory()
 
     def get_icon(self):
         if icon_name := self.open_dialog("Select icon file"):
