@@ -21,7 +21,7 @@ class CollectDatas(UiUbuntuDesktop):
         self.pushButton_exec.clicked.connect(self.get_exec)
         self.pushButton_icon.clicked.connect(self.get_icon)
         self.pushButton_save.clicked.connect(self.get_all_datas)
-        self.pushButton_quit.clicked.connect(sys.exit)
+        self.pushButton_quit.clicked.connect(app.exit)
         self.pushButton_categories.clicked.connect(self.get_categories)
         self.checkBox_terminal.clicked.connect(self.set_statut_terminal)
         self.checkBox_startup.clicked.connect(self.set_statut_startup)
