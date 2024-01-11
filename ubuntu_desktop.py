@@ -17,7 +17,6 @@ class CollectDatas(UiUbuntuDesktop):
         super().__init__()
         self.dict_datas = {}
         self.title = "UDesktopFile"
-        self.file_desktop = ""
         self.lineEdit_type.setText("Application")
         # Connect pushButton
         self.pushButton_exec.clicked.connect(self.get_exec)
@@ -37,8 +36,8 @@ class CollectDatas(UiUbuntuDesktop):
             "Path": os.path.dirname(self.lineEdit_exec.text())
             if self.checkBox_directory.isChecked()
             else "",
-            "StartupNotify": "true" if self.checkBox_startup.isChecked() else "false",
-            "Terminal": "true" if self.checkBox_terminal.isChecked() else "false",
+            "StartupNotify": str(self.checkBox_startup.isChecked()).lower(),
+            "Terminal": str(self.checkBox_terminal.isChecked()).lower(),
             "Type": self.lineEdit_type.text(),
             "Version": self.lineEdit_version.text(),
         }
