@@ -44,6 +44,10 @@ class CollectDatas(UiUbuntuDesktop):
     def open_dialog(self, title, is_directory=False):
         dialog = DialogOpen("", title, "", "")
         return dialog.openDir() if is_directory else dialog.openFile()
+    
+    def save_dialog(self, title):
+        dialog = DialogOpen("", title, f"{self.lineEdit_name.text()}.desktop", "*.desktop")
+        print(dialog.saveFile())
 
     def get_exec(self):
         if binary_name := self.open_dialog("Select binary file"):
@@ -67,7 +71,8 @@ class CollectDatas(UiUbuntuDesktop):
             return False
 
     def save_desktop_file(self):
-        if folder := self.open_dialog("Destination Desktop File", is_directory=True):
+        self.save_dialog("Destination Desktop File")
+        if folder := self.open_dialog("Destination Desktop ", is_directory=True):
             file_name = self.dict_datas["Name"]
             if self.write_desktop_file(folder, file_name):
                 self.show_message(self.title, f"File {file_name} Saved in {folder}")

@@ -9,5 +9,5 @@ Path=/home/diablo/Public/ubuntu_desktop
 StartupNotify=true
 Terminal=false
 Type=Application
-Version=1.3
+Version=1.0.3
 
