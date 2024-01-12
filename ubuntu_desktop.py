@@ -17,16 +17,30 @@ class CollectDatas(UiUbuntuDesktop):
         super().__init__()
         self.dict_datas = {}
         self.title = "UDesktopFile"
-        # Connect pushButtons
-        self.pushButton_exec.clicked.connect(self.get_exec)
-        self.pushButton_icon.clicked.connect(self.get_icon)
-        self.pushButton_save.clicked.connect(self.get_all_datas)
-        self.pushButton_quit.clicked.connect(app.exit)
-        self.pushButton_categories.clicked.connect(self.get_categories)
-        # Connect checkBoxes
-        self.checkBox_terminal.clicked.connect(self.set_statut_checkbox)
-        self.checkBox_startup.clicked.connect(self.set_statut_checkbox)
-        self.checkBox_directory.clicked.connect(self.set_path_directory)
+        # Connect pushButtons and checkBoxes
+        buttons = {
+            self.pushButton_exec: self.get_exec,
+            self.pushButton_icon: self.get_icon,
+            self.pushButton_save: self.get_all_datas,
+            self.pushButton_quit: app.exit,
+            self.pushButton_categories: self.get_categories
+        }
+        checkboxes = {
+            self.checkBox_terminal: self.update_checkbox,
+            self.checkBox_startup: self.update_checkbox,
+            self.checkBox_directory: self.update_checkbox
+        }
+        for button, slot in buttons.items():
+            button.clicked.connect(slot)
+        for checkbox, slot in checkboxes.items():
+            checkbox.clicked.connect(slot)
+
+    def update_checkbox(self) -> None:
+        checkbox = self.sender()
+        if checkbox == self.checkBox_directory:
+            checkbox.setText(os.path.dirname(self.lineEdit_exec.text()) if checkbox.isChecked() else "")
+        else:
+            checkbox.setText(str(checkbox.isChecked()))
 
     def get_all_datas(self) -> None:
         self.dict_datas = {
@@ -46,9 +60,6 @@ class CollectDatas(UiUbuntuDesktop):
         }
         self.save_desktop_file()
 
-    def set_statut_checkbox(self) -> None:
-        self.sender().setText(str(self.sender().isChecked()))
-    
     def set_path_directory(self) -> None:
         if self.checkBox_directory.isChecked():
             self.checkBox_directory.setText(os.path.dirname(self.lineEdit_exec.text()))
