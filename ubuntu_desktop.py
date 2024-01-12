@@ -28,7 +28,7 @@ class CollectDatas(UiUbuntuDesktop):
         checkboxes = {
             self.checkBox_terminal: self.update_checkbox,
             self.checkBox_startup: self.update_checkbox,
-            self.checkBox_directory: self.update_checkbox
+            self.checkBox_directory: self.set_path_directory
         }
         for button, slot in buttons.items():
             button.clicked.connect(slot)
@@ -36,11 +36,7 @@ class CollectDatas(UiUbuntuDesktop):
             checkbox.clicked.connect(slot)
 
     def update_checkbox(self) -> None:
-        checkbox = self.sender()
-        if checkbox == self.checkBox_directory:
-            checkbox.setText(os.path.dirname(self.lineEdit_exec.text()) if checkbox.isChecked() else "")
-        else:
-            checkbox.setText(str(checkbox.isChecked()))
+        self.sender().setText(str(self.sender().isChecked()))
 
     def get_all_datas(self) -> None:
         self.dict_datas = {
@@ -61,10 +57,11 @@ class CollectDatas(UiUbuntuDesktop):
         self.save_desktop_file()
 
     def set_path_directory(self) -> None:
-        if self.checkBox_directory.isChecked():
-            self.checkBox_directory.setText(os.path.dirname(self.lineEdit_exec.text()))
-        else:
-            self.checkBox_directory.setText("")
+        self.checkBox_directory.setText(
+            os.path.dirname(self.lineEdit_exec.text())
+            if self.checkBox_directory.isChecked()
+            else ""
+        )
 
     def open_dialog(self, title) -> str:
         dialog = DialogOpen("", title, "", "")
