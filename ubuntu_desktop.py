@@ -4,6 +4,7 @@
 
 import sys
 import os
+import configparser
 from PyQt5 import QtWidgets
 from Ui_ubuntu_desktop import UiUbuntuDesktop
 from Ui_ubuntu_desktop_cat import UiCategories
@@ -18,22 +19,20 @@ class CollectDatas(UiUbuntuDesktop):
         self.dict_datas = {}
         self.title = "UDesktopFile"
         # Connect pushButtons and checkBoxes
-        buttons = {
+        self._connect_signals({
             self.pushButton_exec: self.get_exec,
             self.pushButton_icon: self.get_icon,
             self.pushButton_save: self.get_all_datas,
             self.pushButton_quit: app.exit,
-            self.pushButton_categories: self.get_categories
-        }
-        checkboxes = {
+            self.pushButton_categories: self.get_categories,
             self.checkBox_terminal: self.update_checkbox,
             self.checkBox_startup: self.update_checkbox,
             self.checkBox_directory: self.set_path_directory
-        }
-        for button, slot in buttons.items():
-            button.clicked.connect(slot)
-        for checkbox, slot in checkboxes.items():
-            checkbox.clicked.connect(slot)
+        })
+
+    def _connect_signals(self, widgets):
+        for widget, slot in widgets.items():
+            widget.clicked.connect(slot)
 
     def update_checkbox(self) -> None:
         self.sender().setText(str(self.sender().isChecked()))
@@ -85,16 +84,17 @@ class CollectDatas(UiUbuntuDesktop):
     def get_categories(self) -> None:
         UiCategories(self)
 
+
     def write_desktop_file(self, destination) -> bool:
+        config = configparser.ConfigParser()
+        config.optionxform = str
+        config["Desktop Entry"] = self.dict_datas
         try:
-            datas_file = "[Desktop Entry]\n" + "\n".join(
-                f"{key}={value}" for key, value in self.dict_datas.items()
-            )
-            with open(destination, "w") as f:
-                f.write(datas_file)
+            with open(destination, "w") as config_file:
+                config.write(config_file, space_around_delimiters=False)
             return True
-        except IOError as er:
-            self.show_message(self.title, f"Unable to create file !! {er}")
+        except IOError as error:
+            self.show_message(self.title, f"Unable to create file !! {error}")
             return False
 
     def save_desktop_file(self) -> None:
