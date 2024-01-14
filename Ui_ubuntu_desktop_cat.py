@@ -4,10 +4,10 @@ from PyQt5 import QtCore, QtWidgets
 
 
 class UiCategories(QtWidgets.QDialog):
-    def __init__(self, parent=None) -> None:
+    categoriesSelected = QtCore.pyqtSignal(list)
+    def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("Select your categories")
-        self.parent = parent
         self.setFixedSize(602, 207)
         self.gridLayoutWidget = QtWidgets.QWidget(self)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(8, 8, 585, 165))
@@ -28,7 +28,7 @@ class UiCategories(QtWidgets.QDialog):
         self.pushButton.setText("Ok")
         self.pushButton.setGeometry(QtCore.QRect(int((self.width()/2)-34), 168, 68, 32))
         self.pushButton.clicked.connect(self.get_type_categories)
-        self.exec_()
+        
 
     def get_type_categories(self):
         list_categories = [
@@ -36,7 +36,7 @@ class UiCategories(QtWidgets.QDialog):
             for check_box in self.gridLayoutWidget.findChildren(QtWidgets.QCheckBox)
             if check_box.isChecked()
         ]
-        self.parent.lineEdit_categories.setText(";".join(list_categories))
+        self.categoriesSelected.emit(list_categories)
         self.close()
 
 if __name__ == "__main__":

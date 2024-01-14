@@ -18,6 +18,8 @@ class CollectDatas(UiUbuntuDesktop):
         super().__init__()
         self.dict_datas = {}
         self.title = "UDesktopFile"
+        self.ui_categories = UiCategories()
+        self.ui_categories.categoriesSelected.connect(self.update_categories)
         # Connect pushButtons and checkBoxes
         self._connect_signals({
             self.pushButton_exec: self.get_exec,
@@ -36,6 +38,9 @@ class CollectDatas(UiUbuntuDesktop):
 
     def update_checkbox(self) -> None:
         self.sender().setText(str(self.sender().isChecked()))
+
+    def update_categories(self, categories):
+        self.lineEdit_categories.setText(";".join(categories))
 
     def get_all_datas(self) -> None:
         self.dict_datas = {
@@ -82,7 +87,7 @@ class CollectDatas(UiUbuntuDesktop):
             self.lineEdit_icon.setText(icon_name)
 
     def get_categories(self) -> None:
-        UiCategories(self)
+        self.ui_categories.exec_()
 
 
     def write_desktop_file(self, destination) -> bool:
