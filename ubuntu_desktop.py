@@ -4,11 +4,10 @@
 
 import sys
 import os
-import configparser
 from PyQt5 import QtWidgets
 from Ui_ubuntu_desktop import UiUbuntuDesktop
 from Ui_ubuntu_desktop_cat import UiCategories
-from qt_file_dialog import DialogOpen
+from ubuntu_utilities import Utilities
 
 __version__ = "1.0.3"
 
@@ -16,7 +15,6 @@ __version__ = "1.0.3"
 class CollectDatas(UiUbuntuDesktop):
     def __init__(self) -> None:
         super().__init__()
-        self.dict_datas = {}
         self.title = "UDesktopFile"
         self.ui_categories = UiCategories()
         self.ui_categories.categories_selected.connect(self.update_categories)
@@ -43,7 +41,7 @@ class CollectDatas(UiUbuntuDesktop):
         self.lineEdit_categories.setText(";".join(list_categories))
 
     def get_all_datas(self) -> None:
-        self.dict_datas = {
+        dict_datas = {
             "Categories": self.lineEdit_categories.text(),
             "Comment": self.lineEdit_comment.text(),
             "Exec": self.lineEdit_exec.text(),
@@ -58,7 +56,7 @@ class CollectDatas(UiUbuntuDesktop):
             "Type": self.lineEdit_type.text(),
             "Version": self.lineEdit_version.text(),
         }
-        self.save_desktop_file()
+        self.save_desktop_file(dict_datas)
 
     def set_path_directory(self) -> None:
         self.checkBox_directory.setText(
@@ -67,43 +65,23 @@ class CollectDatas(UiUbuntuDesktop):
             else ""
         )
 
-    def open_dialog(self, title) -> str:
-        dialog = DialogOpen("", title, "", "")
-        return dialog.openFile()
-
-    def save_dialog(self, title) -> str:
-        dialog = DialogOpen(
-            "", title, f"{self.lineEdit_name.text()}.desktop", "*.desktop"
-        )
-        return dialog.saveFile()
-
     def get_exec(self) -> None:
-        if binary_name := self.open_dialog("Select binary file"):
+        if binary_name := Utilities.open_dialog(self, title="Select binary file"):
             self.lineEdit_exec.setText(binary_name)
             self.set_path_directory()
 
     def get_icon(self) -> None:
-        if icon_name := self.open_dialog("Select icon file"):
+        if icon_name := Utilities.open_dialog(self, title="Select icon file"):
             self.lineEdit_icon.setText(icon_name)
 
     def exec_categories(self) -> None:
         self.ui_categories.exec_()
 
-
-    def write_desktop_file(self, destination) -> None:
-        config = configparser.ConfigParser()
-        config.optionxform = str
-        config["Desktop Entry"] = self.dict_datas
-        with open(destination, "w") as config_file:
-            config.write(config_file, space_around_delimiters=False)
-
-        
-
-    def save_desktop_file(self) -> None:
+    def save_desktop_file(self, dict_datas) -> None:
         if self.lineEdit_name.text():
-            if destination := self.save_dialog("Destination Desktop File"):
+            if destination := Utilities.save_dialog(self, title="Destination Desktop File"):
                 try:
-                    self.write_desktop_file(destination)
+                    Utilities.write_desktop_file(self, destination, dict_datas)
                     QtWidgets.QMessageBox.information(self, self.title, f"File {destination} Saved.")
                 except IOError as error:
                     QtWidgets.QMessageBox.warning(self, self.title, f"Unable to create file !! {error}")
