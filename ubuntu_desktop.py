@@ -94,19 +94,19 @@ class CollectDatas(UiUbuntuDesktop):
         config = configparser.ConfigParser()
         config.optionxform = str
         config["Desktop Entry"] = self.dict_datas
-        try:
-            with open(destination, "w") as config_file:
-                config.write(config_file, space_around_delimiters=False)
-            return True
-        except IOError as error:
-            self.show_message(self.title, f"Unable to create file !! {error}")
-            return False
+        with open(destination, "w") as config_file:
+            config.write(config_file, space_around_delimiters=False)
+
+        
 
     def save_desktop_file(self) -> None:
         if self.lineEdit_name.text():
             if destination := self.save_dialog("Destination Desktop File"):
-                if self.write_desktop_file(destination):
+                try:
+                    self.write_desktop_file(destination)
                     self.show_message(self.title, f"File {destination} Saved.")
+                except IOError as error:
+                    self.show_message(self.title, f"Unable to create file !! {error}")
         else:
             self.show_message(self.title, "Please enter a File Name.")
 
