@@ -1,17 +1,17 @@
 import configparser
-from qt_file_dialog import DialogOpen
+from qt_file_dialog import FileDialog
 
 
 class Utilities:
     def open_dialog(self, title) -> str:
-        dialog = DialogOpen("", title, "", "")
-        return dialog.openFile()
+        dialog = FileDialog("", title, "", "")
+        return dialog.open_file()
 
     def save_dialog(self, title) -> str:
-        dialog = DialogOpen(
+        dialog = FileDialog(
             "", title, f"{self.lineEdit_name.text()}.desktop", "*.desktop"
         )
-        return dialog.saveFile()
+        return dialog.save_file()
     
     def write_desktop_file(self, destination, dict_datas) -> None:
         config = configparser.ConfigParser()
