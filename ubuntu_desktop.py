@@ -104,14 +104,12 @@ class CollectDatas(UiUbuntuDesktop):
             if destination := self.save_dialog("Destination Desktop File"):
                 try:
                     self.write_desktop_file(destination)
-                    self.show_message(self.title, f"File {destination} Saved.")
+                    QtWidgets.QMessageBox.information(self, self.title, f"File {destination} Saved.")
                 except IOError as error:
                     self.show_message(self.title, f"Unable to create file !! {error}")
+                    QtWidgets.QMessageBox.warning(self, self.title, f"Unable to create file !! {error}")
         else:
-            self.show_message(self.title, "Please enter a File Name.")
-
-    def show_message(self, title, message) -> None:
-        QtWidgets.QMessageBox.information(self, title, message)
+            QtWidgets.QMessageBox.information(self, self.title, "Please enter a File Name.")
 
 
 if __name__ == "__main__":
