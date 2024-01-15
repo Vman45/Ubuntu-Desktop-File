@@ -2,7 +2,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 
 class UiUbuntuDesktop(QtWidgets.QMainWindow):
     def __init__(self) -> None:
