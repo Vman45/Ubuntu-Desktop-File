@@ -106,7 +106,6 @@ class CollectDatas(UiUbuntuDesktop):
                     self.write_desktop_file(destination)
                     QtWidgets.QMessageBox.information(self, self.title, f"File {destination} Saved.")
                 except IOError as error:
-                    self.show_message(self.title, f"Unable to create file !! {error}")
                     QtWidgets.QMessageBox.warning(self, self.title, f"Unable to create file !! {error}")
         else:
             QtWidgets.QMessageBox.information(self, self.title, "Please enter a File Name.")
