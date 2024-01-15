@@ -39,8 +39,8 @@ class CollectDatas(UiUbuntuDesktop):
     def update_checkbox(self) -> None:
         self.sender().setText(str(self.sender().isChecked()))
 
-    def update_categories(self, categories):
-        self.lineEdit_categories.setText(";".join(categories))
+    def update_categories(self, list_categories):
+        self.lineEdit_categories.setText(";".join(list_categories))
 
     def get_all_datas(self) -> None:
         self.dict_datas = {
@@ -90,7 +90,7 @@ class CollectDatas(UiUbuntuDesktop):
         self.ui_categories.exec_()
 
 
-    def write_desktop_file(self, destination) -> bool:
+    def write_desktop_file(self, destination) -> None:
         config = configparser.ConfigParser()
         config.optionxform = str
         config["Desktop Entry"] = self.dict_datas
