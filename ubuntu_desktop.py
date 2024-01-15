@@ -9,8 +9,6 @@ from Ui_ubuntu_desktop import UiUbuntuDesktop
 from Ui_ubuntu_desktop_cat import UiCategories
 from ubuntu_utilities import Utilities
 
-__version__ = "1.0.3"
-
 
 class CollectDatas(UiUbuntuDesktop):
     def __init__(self) -> None:

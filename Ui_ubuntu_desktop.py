@@ -2,6 +2,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+__version__ = "1.0.3"
 
 class UiUbuntuDesktop(QtWidgets.QMainWindow):
     def __init__(self) -> None:
@@ -97,7 +98,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.retranslateUi()
 
     def retranslateUi(self):
-        self.setWindowTitle("Ubuntu Desktop File")
+        self.setWindowTitle(f"Ubuntu Desktop File {__version__}")
         self.label_version.setText("Version :")
         self.label_generic_name.setText("Generic Name :")
         self.label_name.setText("Name :")
