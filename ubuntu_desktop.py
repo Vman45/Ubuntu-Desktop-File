@@ -19,14 +19,14 @@ class CollectDatas(UiUbuntuDesktop):
         self.dict_datas = {}
         self.title = "UDesktopFile"
         self.ui_categories = UiCategories()
-        self.ui_categories.categoriesSelected.connect(self.update_categories)
+        self.ui_categories.categories_selected.connect(self.update_categories)
         # Connect pushButtons and checkBoxes
         self._connect_signals({
             self.pushButton_exec: self.get_exec,
             self.pushButton_icon: self.get_icon,
             self.pushButton_save: self.get_all_datas,
             self.pushButton_quit: app.exit,
-            self.pushButton_categories: self.get_categories,
+            self.pushButton_categories: self.exec_categories,
             self.checkBox_terminal: self.update_checkbox,
             self.checkBox_startup: self.update_checkbox,
             self.checkBox_directory: self.set_path_directory
@@ -86,7 +86,7 @@ class CollectDatas(UiUbuntuDesktop):
         if icon_name := self.open_dialog("Select icon file"):
             self.lineEdit_icon.setText(icon_name)
 
-    def get_categories(self) -> None:
+    def exec_categories(self) -> None:
         self.ui_categories.exec_()
 
 

@@ -4,7 +4,10 @@ from PyQt5 import QtCore, QtWidgets
 
 
 class UiCategories(QtWidgets.QDialog):
-    categoriesSelected = QtCore.pyqtSignal(list)
+    categories_selected = QtCore.pyqtSignal(list)
+    CATEGORIES = ["AudioVideo", "Audio", "Building", "DesktopSettings", "Development",
+                "Education", "Game", "Graphics", "Network", "Office",
+                "Qt", "Settings", "System", "TextEditor", "Utility"]
     def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("Select your categories")
@@ -14,11 +17,7 @@ class UiCategories(QtWidgets.QDialog):
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
 
-        categories = ["AudioVideo", "Audio", "Building", "DesktopSettings", "Development",
-                "Education", "Game", "Graphics", "Network", "Office",
-                "Qt", "Settings", "System", "TextEditor", "Utility"]
-        
-        for index, category in enumerate(categories):
+        for index, category in enumerate(self.CATEGORIES):
             row, col = divmod(index, 5)
             checkbox = QtWidgets.QCheckBox(self.gridLayoutWidget)
             checkbox.setText(category)
@@ -36,7 +35,7 @@ class UiCategories(QtWidgets.QDialog):
             for check_box in self.gridLayoutWidget.findChildren(QtWidgets.QCheckBox)
             if check_box.isChecked()
         ]
-        self.categoriesSelected.emit(list_categories)
+        self.categories_selected.emit(list_categories)
         self.close()
 
 if __name__ == "__main__":
