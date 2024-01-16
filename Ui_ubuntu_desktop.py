@@ -4,6 +4,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 __version__ = "1.0.4"
 
+
 class UiUbuntuDesktop(QtWidgets.QMainWindow):
     def __init__(self) -> None:
         super().__init__()
@@ -86,6 +87,13 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.checkBox_startup.setStyleSheet("color: gray")
         self.checkBox_startup.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.gridLayout.addWidget(self.checkBox_startup, 10, 2, 1, 1)
+        # Widget Python
+        self.label_python = QtWidgets.QLabel(self.gridLayoutWidget)
+        self.gridLayout.addWidget(self.label_python, 11, 0, 1, 1)
+        self.checkBox_python = QtWidgets.QCheckBox(self.gridLayoutWidget)
+        self.checkBox_python.setStyleSheet("color: gray")
+        self.checkBox_python.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.gridLayout.addWidget(self.checkBox_python, 11, 2, 1, 1)
         # Widget Save
         self.pushButton_save = QtWidgets.QPushButton(self)
         self.pushButton_save.setGeometry(
@@ -110,6 +118,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.label_directory.setText("Working directory :")
         self.label_startup.setText("Startup Notify :")
         self.label_terminal.setText("Terminal :")
+        self.label_python.setText("Start with Python :")
         self.pushButton_save.setText("Save")
         self.pushButton_quit.setText("Quit")
         self.checkBox_terminal.setText("False")

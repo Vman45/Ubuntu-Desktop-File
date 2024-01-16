@@ -25,7 +25,8 @@ class CollectDatas(UiUbuntuDesktop):
             self.pushButton_categories: self.exec_categories,
             self.checkBox_terminal: self.update_checkbox,
             self.checkBox_startup: self.update_checkbox,
-            self.checkBox_directory: self.set_path_directory
+            self.checkBox_directory: self.set_path_directory,
+            self.checkBox_python: self.start_with_python
         })
 
     def _connect_signals(self, widgets):
@@ -51,6 +52,7 @@ class CollectDatas(UiUbuntuDesktop):
             else "",
             "StartupNotify": str(self.checkBox_startup.isChecked()).lower(),
             "Terminal": str(self.checkBox_terminal.isChecked()).lower(),
+            "Python": self.checkBox_python.isChecked(),
             "Type": self.lineEdit_type.text(),
             "Version": self.lineEdit_version.text(),
         }
@@ -74,6 +76,12 @@ class CollectDatas(UiUbuntuDesktop):
 
     def exec_categories(self) -> None:
         self.ui_categories.exec_()
+        
+    def start_with_python(self):
+        if self.checkBox_python.isChecked():
+            self.label_exec.setText("Python file :")
+        else:
+            self.label_exec.setText("Exec :")
 
     def save_desktop_file(self, dict_datas) -> None:
         file_name = self.lineEdit_name.text()
