@@ -86,16 +86,16 @@ class CollectDatas(UiUbuntuDesktop):
     def save_desktop_file(self, dict_datas) -> None:
         file_name = self.lineEdit_name.text()
         if not file_name:
-            Utilities.display_message(self, self.title, "Please enter a File Name.", "information")
+            Utilities.display_message(None, self.title, "Please enter a File Name.", "information")
             return
         destination = Utilities.save_dialog(self, title="Destination Desktop File", file_name=file_name)
         if not destination:
             return
         try:
             Utilities.write_desktop_file(self, destination, dict_datas)
-            Utilities.display_message(self, self.title, f"File {destination} Saved.", "information")
+            Utilities.display_message(None, self.title, f"File {destination} Saved.", "information")
         except IOError as error:
-            Utilities.display_message(self, self.title, f"Unable to create file !! {error}", "warning")
+            Utilities.display_message(None, self.title, f"Unable to create file !! {error}", "warning")
 
 
 
