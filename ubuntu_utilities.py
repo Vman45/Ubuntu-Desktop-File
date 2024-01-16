@@ -1,4 +1,3 @@
-import configparser
 from PyQt5 import QtWidgets
 from qt_file_dialog import FileDialog
 
@@ -9,20 +8,18 @@ class Utilities:
         return dialog.open_file()
 
     def save_dialog(self, title, file_name) -> str:
-        dialog = FileDialog(
-            "", title, f"{file_name}.desktop", "*.desktop"
-        )
+        dialog = FileDialog("", title, f"{file_name}.desktop", "*.desktop")
         return dialog.save_file()
-    
+
     def write_desktop_file(self, destination, dict_datas) -> None:
-        config = configparser.ConfigParser()
-        config.optionxform = str
-        config["Desktop Entry"] = dict_datas
+        desktop_datas = "[Desktop Entry]\n" + "\n".join(
+            f"{key}={value}" for key, value in dict_datas.items()
+        )
         with open(destination, "w") as config_file:
-            config.write(config_file, space_around_delimiters=False)
-    
+            config_file.write(desktop_datas)
+
     def display_message(self, title, text, type):
         if type == "warning":
-            QtWidgets.QMessageBox.warning(self, title, text)
+            QtWidgets.QMessageBox.warning(None, title, text)
         else:
-            QtWidgets.QMessageBox.information(self, title, text)
+            QtWidgets.QMessageBox.information(None, title, text)

@@ -33,7 +33,7 @@ class CollectDatas(UiUbuntuDesktop):
             widget.clicked.connect(slot)
 
     def update_checkbox(self) -> None:
-        self.sender().setText(str(self.sender().isChecked()))
+        self.sender().setText(str(self.sender().isChecked())) # type: ignore
 
     def update_categories(self, list_categories):
         self.lineEdit_categories.setText(";".join(list_categories))
