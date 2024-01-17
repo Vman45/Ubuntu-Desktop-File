@@ -8,7 +8,8 @@ __version__ = "1.0.5"
 class UiUbuntuDesktop(QtWidgets.QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        self.button_icon = QtGui.QIcon("Assets/Images/directory_icon.png")
+        button_icon = QtGui.QIcon("Assets/Images/loupe.png")
+        button_categories = QtGui.QIcon("Assets/Images/directory_icon.png")
         self.setFixedSize(772, 355)
         self.setWindowIcon(QtGui.QIcon("Assets/Images/Ubuntu_icon.png"))
         self.gridLayoutWidget = QtWidgets.QWidget(self)
@@ -39,7 +40,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.lineEdit_exec.setClearButtonEnabled(True)
         self.gridLayout.addWidget(self.lineEdit_exec, 3, 2, 1, 1)
         self.pushButton_exec = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.pushButton_exec.setIcon(self.button_icon)
+        self.pushButton_exec.setIcon(button_icon)
         self.pushButton_exec.setMaximumSize(40, 25)
         self.gridLayout.addWidget(self.pushButton_exec, 3, 3, 1, 1)
         # Widgets Icon
@@ -49,7 +50,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.lineEdit_icon.setClearButtonEnabled(True)
         self.gridLayout.addWidget(self.lineEdit_icon, 4, 2, 1, 1)
         self.pushButton_icon = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.pushButton_icon.setIcon(self.button_icon)
+        self.pushButton_icon.setIcon(button_icon)
         self.pushButton_icon.setMaximumSize(40, 25)
         self.gridLayout.addWidget(self.pushButton_icon, 4, 3, 1, 1)
         # Widgets Type
@@ -71,7 +72,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.lineEdit_categories.setClearButtonEnabled(True)
         self.gridLayout.addWidget(self.lineEdit_categories, 7, 2, 1, 1)
         self.pushButton_categories = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.pushButton_categories.setIcon(self.button_icon)
+        self.pushButton_categories.setIcon(button_categories)
         self.pushButton_categories.setMaximumSize(40, 25)
         self.gridLayout.addWidget(self.pushButton_categories, 7, 3, 1, 1)
         # Widgets Teminal
