@@ -1,3 +1,4 @@
+from pathlib import Path
 from PyQt5 import QtWidgets
 from qt_file_dialog import FileDialog
 
@@ -12,11 +13,13 @@ class Utilities:
         return dialog.save_file()
 
     def write_desktop_file(self, destination, dict_datas) -> None:
-        if dict_datas.pop("Python", None):
-            dict_datas["Exec"] = f"Python3 {dict_datas['Exec']}"
+        if dict_datas["Python"]:
+            dict_datas["Exec"] = f"python3 {dict_datas['Exec']}"
+        del dict_datas["Python"]
         desktop_datas = "[Desktop Entry]\n" + "\n".join(
             f"{key}={value}" for key, value in dict_datas.items()
         )
+        
         with open(destination, "w") as desktop_file:
             desktop_file.write(desktop_datas)
 
