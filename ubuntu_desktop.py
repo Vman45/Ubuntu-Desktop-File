@@ -39,7 +39,7 @@ class CollectDatas(UiUbuntuDesktop):
     def update_categories(self, list_categories):
         self.lineEdit_categories.setText(";".join(list_categories))
 
-    def get_all_datas(self) -> None:
+    def get_all_datas(self) -> dict:
         return{
             "Categories": self.lineEdit_categories.text(),
             "Comment": self.lineEdit_comment.text(),
