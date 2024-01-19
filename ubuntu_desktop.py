@@ -20,7 +20,7 @@ class CollectDatas(UiUbuntuDesktop):
         self._connect_signals({
             self.pushButton_exec: self.get_exec,
             self.pushButton_icon: self.get_icon,
-            self.pushButton_save: self.get_all_datas,
+            self.pushButton_save: self.save_desktop_file,
             self.pushButton_quit: app.exit,
             self.pushButton_categories: self.exec_categories,
             self.checkBox_terminal: self.update_checkbox,
@@ -40,7 +40,7 @@ class CollectDatas(UiUbuntuDesktop):
         self.lineEdit_categories.setText(";".join(list_categories))
 
     def get_all_datas(self) -> None:
-        dict_datas = {
+        return{
             "Categories": self.lineEdit_categories.text(),
             "Comment": self.lineEdit_comment.text(),
             "Exec": self.lineEdit_exec.text(),
@@ -56,7 +56,6 @@ class CollectDatas(UiUbuntuDesktop):
             "Type": self.lineEdit_type.text(),
             "Version": self.lineEdit_version.text(),
         }
-        self.save_desktop_file(dict_datas)
 
     def set_path_directory(self) -> None:
         self.checkBox_directory.setText(
@@ -99,7 +98,7 @@ class CollectDatas(UiUbuntuDesktop):
         if not destination:
             return
         try:
-            Utilities.write_desktop_file(self, destination, dict_datas)
+            Utilities.write_desktop_file(self, destination, self.get_all_datas())
             Utilities.display_message(None, self.title, f"File {destination} Saved.", "information")
         except IOError as error:
             Utilities.display_message(None, self.title, f"Unable to create file !! {error}", "warning")
