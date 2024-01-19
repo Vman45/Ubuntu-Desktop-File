@@ -1,11 +1,11 @@
-from pathlib import Path
+
 from PyQt5 import QtWidgets
 from qt_file_dialog import FileDialog
 
 
 class Utilities:
-    def open_dialog(self, title) -> str:
-        dialog = FileDialog(None, title, "", "")
+    def open_dialog(self, title, filtres) -> str:
+        dialog = FileDialog(fileName="Test", titre=title, repertoire="", filtres=filtres)
         return dialog.open_file()
 
     def save_dialog(self, title, file_name) -> str:

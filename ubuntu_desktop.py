@@ -66,12 +66,19 @@ class CollectDatas(UiUbuntuDesktop):
         )
 
     def get_exec(self) -> None:
-        if binary_name := Utilities.open_dialog(self, title="Select binary file"):
+        if self.checkBox_python.isChecked():
+            self.get_python_file()
+        elif binary_name := Utilities.open_dialog(self, title="Select binary file", filtres=""):
             self.lineEdit_exec.setText(binary_name)
             self.set_path_directory()
 
+    def get_python_file(self):
+        if python_name := Utilities.open_dialog(self, title="Selrct python file", filtres="*.py"):
+            self.lineEdit_exec.setText(python_name)
+        
+
     def get_icon(self) -> None:
-        if icon_name := Utilities.open_dialog(self, title="Select icon file"):
+        if icon_name := Utilities.open_dialog(self, title="Select icon file", filtres=""):
             self.lineEdit_icon.setText(icon_name)
 
     def exec_categories(self) -> None:
