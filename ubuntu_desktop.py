@@ -73,7 +73,7 @@ class CollectDatas(UiUbuntuDesktop):
             self.set_path_directory()
 
     def get_python_file(self):
-        if python_name := Utilities.open_dialog(self, title="Selrct python file", filtres="*.py"):
+        if python_name := Utilities.open_dialog(self, title="Select python file", filtres="*.py"):
             self.lineEdit_exec.setText(python_name)
         
 
