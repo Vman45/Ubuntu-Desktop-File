@@ -127,7 +127,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.label_directory.setText("Working directory :")
         self.label_startup.setText("Startup Notify :")
         self.label_terminal.setText("Terminal :")
-        self.label_python.setText("Start with Python :")
+        self.label_python.setText("Launch with Python :")
         self.pushButton_save.setText("Save")
         self.pushButton_quit.setText("Quit")
         self.checkBox_terminal.setText("False")
