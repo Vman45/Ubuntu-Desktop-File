@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+# -*- Coding: utf-8 -*-
+# Created by Diablo76 on 04/01/2024 -- 00:44:10.
+# Copyright © 2024 Diablo76. All rights reserved.
 
 from PyQt5 import QtCore, QtWidgets
 
