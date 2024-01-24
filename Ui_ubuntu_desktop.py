@@ -59,7 +59,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.label_type = QtWidgets.QLabel(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.label_type, 5, 0, 1, 1)
         self.lineEdit_type = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_type.setClearButtonEnabled(True)
+        self.lineEdit_type.setReadOnly(True)
         self.gridLayout.addWidget(self.lineEdit_type, 5, 2, 1, 1)
         # Widgets Version
         self.label_version = QtWidgets.QLabel(self.gridLayoutWidget)
@@ -71,7 +71,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.label_categories = QtWidgets.QLabel(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.label_categories, 7, 0, 1, 1)
         self.lineEdit_categories = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_categories.setClearButtonEnabled(True)
+        self.lineEdit_categories.setReadOnly(True)
         self.gridLayout.addWidget(self.lineEdit_categories, 7, 2, 1, 1)
         self.pushButton_categories = QtWidgets.QPushButton(self.gridLayoutWidget)
         self.pushButton_categories.setIcon(button_categories)
