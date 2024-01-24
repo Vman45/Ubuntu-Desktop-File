@@ -12,10 +12,10 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         super().__init__()
         button_icon = QtGui.QIcon("Assets/Images/loupe.png")
         button_categories = QtGui.QIcon("Assets/Images/directory_icon.png")
-        self.setFixedSize(772, 355)
+        self.setFixedSize(822, 355)
         self.setWindowIcon(QtGui.QIcon("Assets/Images/Ubuntu_icon.png"))
         self.gridLayoutWidget = QtWidgets.QWidget(self)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(8, 8, 756, 305))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(8, 8, 806, 305))
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         # Widgets Name
         self.label_name = QtWidgets.QLabel(self.gridLayoutWidget)
@@ -112,7 +112,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         )
         # Widget Quit
         self.pushButton_quit = QtWidgets.QPushButton(self)
-        self.pushButton_quit.setGeometry(QtCore.QRect(688, 312, 68, 32))
+        self.pushButton_quit.setGeometry(QtCore.QRect(738, 312, 68, 32))
         # Translate
         self.retranslateUi()
 
@@ -126,7 +126,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.label_icon.setText("Icon :")
         self.label_comment.setText("Comment :")
         self.label_categories.setText("Categories :")
-        self.label_directory.setText("Working directory :")
+        self.label_directory.setText("Path directory :")
         self.label_startup.setText("Startup Notify :")
         self.label_terminal.setText("Terminal :")
         self.label_python.setText("Launch with Python :")

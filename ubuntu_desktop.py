@@ -7,7 +7,7 @@ import os
 from PyQt5 import QtWidgets
 from Ui_ubuntu_desktop import UiUbuntuDesktop
 from Ui_ubuntu_desktop_cat import UiCategories
-from ubuntu_utilities import Utilities
+import utilities
 
 
 class CollectDatas(UiUbuntuDesktop):
@@ -67,17 +67,20 @@ class CollectDatas(UiUbuntuDesktop):
     def get_exec(self) -> None:
         if self.checkBox_python.isChecked():
             self.get_python_file()
-        elif binary_name := Utilities.open_dialog(self, title="Select binary file", filtres=""):
-            self.lineEdit_exec.setText(binary_name)
-            self.set_path_directory()
+        elif exec_file := utilities.open_dialog(title="Select binary file", filtres=""):
+            if utilities.file_is_exe(exec_file):
+                self.lineEdit_exec.setText(exec_file)
+            else:
+                utilities.display_message(self.title, f"{exec_file} is not executable", "information")
+        self.set_path_directory()
 
     def get_python_file(self):
-        if python_name := Utilities.open_dialog(self, title="Select python file", filtres="*.py"):
+        if python_name := utilities.open_dialog(title="Select python file", filtres="*.py"):
             self.lineEdit_exec.setText(python_name)
         
 
     def get_icon(self) -> None:
-        if icon_name := Utilities.open_dialog(self, title="Select icon file", filtres=""):
+        if icon_name := utilities.open_dialog(title="Select icon file", filtres=""):
             self.lineEdit_icon.setText(icon_name)
 
     def exec_categories(self) -> None:
@@ -89,19 +92,27 @@ class CollectDatas(UiUbuntuDesktop):
         else:
             self.label_exec.setText("Exec :")
 
-    def save_desktop_file(self, dict_datas) -> None:
-        file_name = self.lineEdit_name.text()
-        if not file_name:
-            Utilities.display_message(None, self.title, "Please enter a File Name.", "information")
-            return
-        destination = Utilities.save_dialog(self, title="Destination Desktop File", file_name=file_name)
-        if not destination:
-            return
-        try:
-            Utilities.write_desktop_file(self, destination, self.get_all_datas())
-            Utilities.display_message(None, self.title, f"File {destination} Saved.", "information")
-        except IOError as error:
-            Utilities.display_message(None, self.title, f"Unable to create file !! {error}", "warning")
+    def check_widgets(self):
+        if not self.lineEdit_name.text():
+            utilities.display_message(self.title, "Please enter a File Name.", "information")
+            return False
+        if not self.lineEdit_exec.text():
+            message = "Please enter a Python File ." if self.checkBox_python.isChecked() else "Please enter a Executable File ."
+            utilities.display_message(self.title, message, "information")
+            return False
+        return True
+
+    def save_desktop_file(self) -> None:
+        if self.check_widgets():
+            if destination := utilities.save_dialog(
+                title="Destination Desktop File",
+                file_name=self.lineEdit_name.text(),
+            ):
+                try:
+                    utilities.write_desktop_file(destination, self.get_all_datas())
+                    utilities.display_message(self.title, f"File {destination} Saved.", "information")
+                except IOError as error:
+                    utilities.display_message(self.title, f"Unable to create file !! {error}", "warning")
 
 
 
