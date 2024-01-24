@@ -67,20 +67,20 @@ class CollectDatas(UiUbuntuDesktop):
     def get_exec(self) -> None:
         if self.checkBox_python.isChecked():
             self.get_python_file()
-        elif exec_file := utilities.open_dialog(title="Select binary file", filtres=""):
+        elif exec_file := utilities.open_dialog(title="Select binary file.", filtres=""):
             if utilities.file_is_exe(exec_file):
                 self.lineEdit_exec.setText(exec_file)
             else:
-                utilities.display_message(self.title, f"{exec_file} is not executable", "information")
+                utilities.display_message(self.title, f"{exec_file} is not executable.", "information")
         self.set_path_directory()
 
     def get_python_file(self):
-        if python_name := utilities.open_dialog(title="Select python file", filtres="*.py"):
+        if python_name := utilities.open_dialog(title="Select python file.", filtres="*.py"):
             self.lineEdit_exec.setText(python_name)
         
 
     def get_icon(self) -> None:
-        if icon_name := utilities.open_dialog(title="Select icon file", filtres=""):
+        if icon_name := utilities.open_dialog(title="Select icon file.", filtres=""):
             self.lineEdit_icon.setText(icon_name)
 
     def exec_categories(self) -> None:
@@ -94,10 +94,10 @@ class CollectDatas(UiUbuntuDesktop):
 
     def check_widgets(self):
         if not self.lineEdit_name.text():
-            utilities.display_message(self.title, "Please enter a Application Name.", "information")
+            utilities.display_message(self.title, "Please enter a application name.", "information")
             return False
         if not self.lineEdit_exec.text():
-            message = "Please enter a Python File ." if self.checkBox_python.isChecked() else "Please enter a Executable File ."
+            message = "Please enter a Python File ." if self.checkBox_python.isChecked() else "Please enter a executable file."
             utilities.display_message(self.title, message, "information")
             return False
         return True
@@ -110,7 +110,7 @@ class CollectDatas(UiUbuntuDesktop):
             ):
                 try:
                     utilities.write_desktop_file(destination, self.get_all_datas())
-                    utilities.display_message(self.title, f"File {destination} Saved.", "information")
+                    utilities.display_message(self.title, f"File {destination} saved.", "information")
                 except IOError as error:
                     utilities.display_message(self.title, f"Unable to create file !! {error}", "warning")
 
