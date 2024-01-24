@@ -1,6 +1,6 @@
 # Ubuntu Desktop File
 
-## Ubuntu Desktop File est un utilitaire permettant la création de fichiers de configuration desktop simplifié.
+## Ubuntu Desktop File est un utilitaire permettant la création de fichiers de configuration desktop simplifiés.
 Il utilise une interface graphique (Qt).
 
 L'interface :
