@@ -23,8 +23,8 @@ class CollectDatas(UiUbuntuDesktopFile):
             self.pushButton_save: self.save_desktop_file,
             self.pushButton_quit: app.exit,
             self.pushButton_categories: self.exec_categories,
-            self.checkBox_terminal: self.update_checkbox,
-            self.checkBox_startup: self.update_checkbox,
+            self.checkBox_terminal: self.update_checkbox_text,
+            self.checkBox_startup: self.update_checkbox_text,
             self.checkBox_directory: self.set_path_directory,
             self.checkBox_python: self.launch_with_python
         })
@@ -33,10 +33,11 @@ class CollectDatas(UiUbuntuDesktopFile):
         for widget, slot in widgets.items():
             widget.clicked.connect(slot)
 
-    def update_checkbox(self) -> None:
-        self.sender().setText(str(self.sender().isChecked())) # type: ignore
+    def update_checkbox_text(self) -> None:
+        checkbox = self.sender()
+        checkbox.setText(str(checkbox.isChecked()))
 
-    def update_categories(self, list_categories):
+    def update_categories(self, list_categories) -> None:
         self.lineEdit_categories.setText(";".join(list_categories))
 
     def get_all_datas(self) -> dict:
@@ -66,18 +67,13 @@ class CollectDatas(UiUbuntuDesktopFile):
 
     def get_exec(self) -> None:
         if self.checkBox_python.isChecked():
-            self.get_python_file()
-        elif exec_file := utilities.open_file_dialog(title="Select executable file.", filter=""):
-            if utilities.file_is_exe(exec_file):
-                self.lineEdit_exec.setText(exec_file)
+            if python_file := utilities.select_python_file():
+                self.lineEdit_exec.setText(python_file)
             else:
-                utilities.display_message(self.title, f"{exec_file} is not executable.", "information")
+                self.lineEdit_exec.clear()
+        elif exec_file := utilities.select_executable_file(self.title):
+            self.lineEdit_exec.setText(exec_file)
         self.set_path_directory()
-
-    def get_python_file(self):
-        if python_file := utilities.open_file_dialog(title="Select python file.", filter="*.py"):
-            self.lineEdit_exec.setText(python_file)
-        
 
     def get_icon(self) -> None:
         if icon_file := utilities.open_file_dialog(title="Select icon file.", filter=""):

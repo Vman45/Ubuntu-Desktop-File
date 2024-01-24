@@ -4,7 +4,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-__version__ = "1.0.5"
+__version__ = "1.0.6"
 
 
 class UiUbuntuDesktopFile(QtWidgets.QMainWindow):
@@ -107,7 +107,7 @@ class UiUbuntuDesktopFile(QtWidgets.QMainWindow):
         self.gridLayout.addWidget(self.checkBox_python, 11, 2, 1, 1)
         # Widget Label_icon
         self.label_icon_application = QtWidgets.QLabel(self)
-        self.label_icon_application.setGeometry(QtCore.QRect(int((self.width()/2)-34), 224, 68, 68))
+        self.label_icon_application.setGeometry(QtCore.QRect(738, 224, 68, 68))
         self.label_icon_application.setScaledContents(True)
         # Widget Save
         self.pushButton_save = QtWidgets.QPushButton(self)
@@ -130,7 +130,7 @@ class UiUbuntuDesktopFile(QtWidgets.QMainWindow):
         self.label_icon.setText("Icon :")
         self.label_comment.setText("Comment :")
         self.label_categories.setText("Categories :")
-        self.label_directory.setText("Path directory :")
+        self.label_directory.setText("Path Directory :")
         self.label_startup.setText("Startup Notify :")
         self.label_terminal.setText("Terminal :")
         self.label_python.setText("Launch with Python :")
