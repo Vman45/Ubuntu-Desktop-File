@@ -1,9 +1,9 @@
 # Ubuntu Desktop File
 
 ## Ubuntu Desktop File est un utilitaire permettant la création de fichiers de configuration desktop simplifiés.
-Il utilise une interface graphique (Qt).
+### Il utilise une interface graphique (Qt).
 
-L'interface :
+L'interface :  
 ![Interface](https://github.com/diablo76600/Ubuntu-Desktop/assets/3962168/d63e3cea-5b9b-4094-8c33-119a33dc8f4f)
 
 L'option Categories :  
@@ -25,9 +25,10 @@ Terminal=false
 Type=Application  
 Version=1.0.6  
 
-Ubuntu Desktop File permet également l'execution de fichiers Python avec l'option **Launch with Python** (par défaut Python3)
+### Ubuntu Desktop File permet également l'execution de fichiers Python avec l'option  
+### Launch with Python (par défaut Python3)
 
-L'option activée :
+L'option activée :  
 ![InterfaceFinalePy](https://github.com/diablo76600/Ubuntu-Desktop/assets/3962168/d81d4aa9-11a2-49c0-8262-22fd8de8a946)
 
 Le fichier généré :  
