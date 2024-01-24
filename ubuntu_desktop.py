@@ -67,7 +67,7 @@ class CollectDatas(UiUbuntuDesktop):
     def get_exec(self) -> None:
         if self.checkBox_python.isChecked():
             self.get_python_file()
-        elif exec_file := utilities.open_dialog(title="Select binary file.", filtres=""):
+        elif exec_file := utilities.open_dialog(title="Select executable file.", filtres=""):
             if utilities.file_is_exe(exec_file):
                 self.lineEdit_exec.setText(exec_file)
             else:
