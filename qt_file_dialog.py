@@ -7,22 +7,22 @@ from PyQt5.QtWidgets import QFileDialog
 
 class FileDialog(QFileDialog):
 
-    def __init__(self, fileName, titre, repertoire, filtres):
+    def __init__(self, title, directory, default_filename, filter):
         super().__init__()
-        self.fileName = fileName
-        self.titre = titre
-        self.repertoire = repertoire
-        self.filtres = filtres
+        self.default_filename = default_filename
+        self.title = title
+        self.directory = directory
+        self.filter = filter
 
     def open_file(self):
-        return self.getOpenFileName(None, self.titre, self.repertoire,
-                    self.filtres, options=self.DontUseNativeDialog)[0]
+        return self.getOpenFileName(None, self.title, self.directory,
+                    self.filter, options=self.DontUseNativeDialog)[0]
 
     def open_dir(self):
         return self.getExistingDirectory(
-            None, self.titre, self.repertoire, options=self.DontUseNativeDialog
+            None, self.title, self.directory, options=self.DontUseNativeDialog
         )
 
     def save_file(self):
-        return self.getSaveFileName(None, self.titre, self.repertoire,  
-                    self.filtres, options=self.DontUseNativeDialog)[0]
+        return self.getSaveFileName(None, self.title, self.default_filename, self.directory,  
+                    self.filter, options=self.DontUseNativeDialog)[0]

@@ -7,12 +7,12 @@ from PyQt5 import QtWidgets
 from qt_file_dialog import FileDialog
 
 
-def open_dialog(title, filtres) -> str:
-    dialog = FileDialog(fileName="Test", titre=title, repertoire="", filtres=filtres)
+def open_file_dialog(title, filter) -> str:
+    dialog = FileDialog( title=title, directory="", default_filename="", filter=filter)
     return dialog.open_file()
 
-def save_dialog(title, file_name) -> str:
-    dialog = FileDialog(None, title, f"{file_name}.desktop", "*.desktop")
+def save_file_dialog(title, file_name) -> str:
+    dialog = FileDialog(title=title, directory="", default_filename=f"{file_name}.desktop", filter="*.desktop")
     return dialog.save_file()
 
 def write_desktop_file(destination, dict_datas) -> None:

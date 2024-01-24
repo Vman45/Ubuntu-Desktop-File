@@ -5,15 +5,15 @@
 import sys
 import os
 from PyQt5 import QtWidgets, QtGui
-from Ui_ubuntu_desktop import UiUbuntuDesktop
-from Ui_ubuntu_desktop_cat import UiCategories
+from Ui_ubuntu_desktop_file import UiUbuntuDesktopFile
+from Ui_categories import UiCategories
 import utilities
 
 
-class CollectDatas(UiUbuntuDesktop):
+class CollectDatas(UiUbuntuDesktopFile):
     def __init__(self) -> None:
         super().__init__()
-        self.title = "UDesktopFile"
+        self.title = "Ubuntu Desktop File"
         self.ui_categories = UiCategories()
         self.ui_categories.categories_selected.connect(self.update_categories)
         # Connect pushButtons and checkBoxes
@@ -67,7 +67,7 @@ class CollectDatas(UiUbuntuDesktop):
     def get_exec(self) -> None:
         if self.checkBox_python.isChecked():
             self.get_python_file()
-        elif exec_file := utilities.open_dialog(title="Select executable file.", filtres=""):
+        elif exec_file := utilities.open_file_dialog(title="Select executable file.", filter=""):
             if utilities.file_is_exe(exec_file):
                 self.lineEdit_exec.setText(exec_file)
             else:
@@ -75,18 +75,19 @@ class CollectDatas(UiUbuntuDesktop):
         self.set_path_directory()
 
     def get_python_file(self):
-        if python_file := utilities.open_dialog(title="Select python file.", filtres="*.py"):
+        if python_file := utilities.open_file_dialog(title="Select python file.", filter="*.py"):
             self.lineEdit_exec.setText(python_file)
         
 
     def get_icon(self) -> None:
-        if icon_file := utilities.open_dialog(title="Select icon file.", filtres=""):
+        if icon_file := utilities.open_file_dialog(title="Select icon file.", filter=""):
             self.lineEdit_icon.setText(icon_file)
             pixmap = QtGui.QPixmap(icon_file)
             if not pixmap.isNull():
                 self.label_icon_application.setPixmap(pixmap)
             else:
                 utilities.display_message(self.title, f"{icon_file} is not recognized.", "information")
+                self.lineEdit_icon.clear()
 
     def exec_categories(self) -> None:
         self.ui_categories.exec_()
@@ -111,7 +112,7 @@ class CollectDatas(UiUbuntuDesktop):
 
     def save_desktop_file(self) -> None:
         if self.check_widgets():
-            if destination := utilities.save_dialog(
+            if destination := utilities.save_file_dialog(
                 title="Destination Desktop File",
                 file_name=self.lineEdit_name.text(),
             ):

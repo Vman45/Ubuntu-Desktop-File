@@ -7,7 +7,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 __version__ = "1.0.5"
 
 
-class UiUbuntuDesktop(QtWidgets.QMainWindow):
+class UiUbuntuDesktopFile(QtWidgets.QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         button_icon = QtGui.QIcon("Assets/Images/loupe.png")
@@ -145,6 +145,6 @@ if __name__ == "__main__":
     import sys
 
     app = QtWidgets.QApplication(sys.argv)
-    window = UiUbuntuDesktop()
+    window = UiUbuntuDesktopFile()
     window.show()
     sys.exit(app.exec_())
