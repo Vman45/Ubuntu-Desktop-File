@@ -120,7 +120,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.setWindowTitle(f"Ubuntu Desktop File {__version__}")
         self.label_version.setText("Version :")
         self.label_generic_name.setText("Generic Name :")
-        self.label_name.setText("Name :")
+        self.label_name.setText("Application Name :")
         self.label_type.setText("Type :")
         self.label_exec.setText("Exec :")
         self.label_icon.setText("Icon :")

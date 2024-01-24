@@ -94,7 +94,7 @@ class CollectDatas(UiUbuntuDesktop):
 
     def check_widgets(self):
         if not self.lineEdit_name.text():
-            utilities.display_message(self.title, "Please enter a File Name.", "information")
+            utilities.display_message(self.title, "Please enter a Application Name.", "information")
             return False
         if not self.lineEdit_exec.text():
             message = "Please enter a Python File ." if self.checkBox_python.isChecked() else "Please enter a Executable File ."
