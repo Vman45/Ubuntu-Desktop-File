@@ -39,7 +39,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.label_exec = QtWidgets.QLabel(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.label_exec, 3, 0, 1, 1)
         self.lineEdit_exec = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_exec.setClearButtonEnabled(True)
+        self.lineEdit_exec.setReadOnly(True)
         self.gridLayout.addWidget(self.lineEdit_exec, 3, 2, 1, 1)
         self.pushButton_exec = QtWidgets.QPushButton(self.gridLayoutWidget)
         self.pushButton_exec.setIcon(button_icon)
@@ -49,7 +49,7 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.label_icon = QtWidgets.QLabel(self.gridLayoutWidget)
         self.gridLayout.addWidget(self.label_icon, 4, 0, 1, 1)
         self.lineEdit_icon = QtWidgets.QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_icon.setClearButtonEnabled(True)
+        self.lineEdit_icon.setReadOnly(True)
         self.gridLayout.addWidget(self.lineEdit_icon, 4, 2, 1, 1)
         self.pushButton_icon = QtWidgets.QPushButton(self.gridLayoutWidget)
         self.pushButton_icon.setIcon(button_icon)
@@ -105,6 +105,10 @@ class UiUbuntuDesktop(QtWidgets.QMainWindow):
         self.checkBox_python.setStyleSheet("color: gray")
         self.checkBox_python.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.gridLayout.addWidget(self.checkBox_python, 11, 2, 1, 1)
+        # Widget Label_icon
+        self.label_icon_application = QtWidgets.QLabel(self)
+        self.label_icon_application.setGeometry(QtCore.QRect(int((self.width()/2)-34), 224, 68, 68))
+        self.label_icon_application.setScaledContents(True)
         # Widget Save
         self.pushButton_save = QtWidgets.QPushButton(self)
         self.pushButton_save.setGeometry(

@@ -4,7 +4,7 @@
 
 import sys
 import os
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui
 from Ui_ubuntu_desktop import UiUbuntuDesktop
 from Ui_ubuntu_desktop_cat import UiCategories
 import utilities
@@ -75,13 +75,18 @@ class CollectDatas(UiUbuntuDesktop):
         self.set_path_directory()
 
     def get_python_file(self):
-        if python_name := utilities.open_dialog(title="Select python file.", filtres="*.py"):
-            self.lineEdit_exec.setText(python_name)
+        if python_file := utilities.open_dialog(title="Select python file.", filtres="*.py"):
+            self.lineEdit_exec.setText(python_file)
         
 
     def get_icon(self) -> None:
-        if icon_name := utilities.open_dialog(title="Select icon file.", filtres=""):
-            self.lineEdit_icon.setText(icon_name)
+        if icon_file := utilities.open_dialog(title="Select icon file.", filtres=""):
+            self.lineEdit_icon.setText(icon_file)
+            pixmap = QtGui.QPixmap(icon_file)
+            if not pixmap.isNull():
+                self.label_icon_application.setPixmap(pixmap)
+            else:
+                utilities.display_message(self.title, f"{icon_file} is not recognized.", "information")
 
     def exec_categories(self) -> None:
         self.ui_categories.exec_()
