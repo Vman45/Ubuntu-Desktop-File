@@ -1,2 +1,2 @@
-cd /home/diablo/Documents/GitHub/Ubuntu-Desktop
+cd /home/diablo/Documents/GitHub/Ubuntu-Desktop-File
 python3.10 -m nuitka --deployment --onefile --include-data-dir=Assets=Assets --enable-plugin=pyqt5 ubuntu_desktop_file.py

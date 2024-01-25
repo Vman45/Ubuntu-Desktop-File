@@ -46,6 +46,8 @@ StartupNotify=true
 Terminal=false  
 Type=Application  
 Version=1.0.6  
+  
+Pour executer le programme, double-cliquez sur le fichier **run_script.sh**
 
 
 
