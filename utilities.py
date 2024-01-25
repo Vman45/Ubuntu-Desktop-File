@@ -41,3 +41,7 @@ def select_executable_file(title):
 
 def select_python_file():
     return open_file_dialog(title="Select python file.", filter="*.py")
+
+def get_application_name(path_file):
+    return os.path.splitext(os.path.basename(path_file))[0]
+

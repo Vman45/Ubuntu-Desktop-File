@@ -16,9 +16,10 @@ class CollectDatas(UiUbuntuDesktopFile):
         self.title = "Ubuntu Desktop File"
         self.ui_categories = UiCategories()
         self.ui_categories.categories_selected.connect(self.update_categories)
+        self.lineEdit_exec.textChanged.connect(self.update_application_name)
         # Connect pushButtons and checkBoxes
         self._connect_signals({
-            self.pushButton_exec: self.get_exec,
+            self.pushButton_exec: self.select_exec_or_python_file,
             self.pushButton_icon: self.get_icon,
             self.pushButton_save: self.save_desktop_file,
             self.pushButton_quit: app.exit,
@@ -35,7 +36,14 @@ class CollectDatas(UiUbuntuDesktopFile):
 
     def update_checkbox_text(self) -> None:
         checkbox = self.sender()
-        checkbox.setText(str(checkbox.isChecked()))
+        if checkbox == self.checkBox_directory:
+            checkbox.setText(os.path.dirname(self.lineEdit_exec.text()) if checkbox.isChecked() else "")
+        else:
+            checkbox.setText(str(checkbox.isChecked()))
+
+    def update_application_name(self):
+        application_name = utilities.get_application_name(self.lineEdit_exec.text())
+        self.lineEdit_name.setText(application_name)
 
     def update_categories(self, list_categories) -> None:
         self.lineEdit_categories.setText(";".join(list_categories))
@@ -65,15 +73,22 @@ class CollectDatas(UiUbuntuDesktopFile):
             else ""
         )
 
-    def get_exec(self) -> None:
+    def select_exec_or_python_file(self) -> None:
         if self.checkBox_python.isChecked():
-            if python_file := utilities.select_python_file():
-                self.lineEdit_exec.setText(python_file)
-            else:
-                self.lineEdit_exec.clear()
-        elif exec_file := utilities.select_executable_file(self.title):
-            self.lineEdit_exec.setText(exec_file)
+            self.get_python_exec()
+        else:
+            self.get_linux_exec()
         self.set_path_directory()
+
+    def get_python_exec(self):
+        if python_file := utilities.select_python_file():
+            self.lineEdit_exec.setText(python_file)
+        else:
+            self.lineEdit_exec.clear()
+
+    def get_linux_exec(self):
+        if exec_file := utilities.select_executable_file(self.title):
+            self.lineEdit_exec.setText(exec_file)
 
     def get_icon(self) -> None:
         if icon_file := utilities.open_file_dialog(title="Select icon file.", filter=""):
@@ -91,10 +106,10 @@ class CollectDatas(UiUbuntuDesktopFile):
     def launch_with_python(self):
         if self.checkBox_python.isChecked():
             self.label_exec.setText("Python file :")
-            self.label_exec.setStyleSheet("color : yellow;")
+            self.label_exec.setStyleSheet("color : red;")
         else:
             self.label_exec.setText("Exec :")
-            self.label_exec.setStyleSheet("color : white;")
+            self.label_exec.setStyleSheet("color : None;")
 
     def check_widgets(self):
         if not self.lineEdit_name.text():
