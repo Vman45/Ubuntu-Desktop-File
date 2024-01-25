@@ -31,9 +31,6 @@ def display_message(title, text, type):
     else:
         QtWidgets.QMessageBox.information(None, title, text)
         
-def file_is_exe(exec_file):
-    return os.access(exec_file, os.X_OK)
-        
 def select_executable_file(title):
     if exec_file := open_file_dialog(title="Select executable file.", filter=""):
         if os.access(exec_file, os.X_OK):
