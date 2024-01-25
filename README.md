@@ -11,7 +11,8 @@ L'option Categories :
 
 ![InterfaceFinale](https://github.com/diablo76600/Ubuntu-Desktop/assets/3962168/bd8dc847-20ef-4d10-9060-e3902d5bd041)
 
-Le fichier généré :  
+Le fichier généré : 
+  
 [Desktop Entry]  
 Categories=DesktopSettings;Settings;Utility  
 Comment=Application permettant la création de fichier de configuration desktop simplifié  
@@ -32,6 +33,7 @@ L'option activée :
 ![InterfaceFinalePy](https://github.com/diablo76600/Ubuntu-Desktop/assets/3962168/d81d4aa9-11a2-49c0-8262-22fd8de8a946)
 
 Le fichier généré :  
+  
 [Desktop Entry]  
 Categories=DesktopSettings;System;Utility  
 Comment=Application permettant la création de fichier de configuration desktop simplifié  
