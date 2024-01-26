@@ -122,8 +122,9 @@ class CollectDatas(UiUbuntuDesktopFile):
         return True
 
     def save_desktop_file(self) -> None:
-        if self.check_widgets():
-            if destination := utilities.save_file_dialog(
+        if not self.check_widgets():
+            return
+        if destination := utilities.save_file_dialog(
                 title="Destination Desktop File",
                 file_name=self.lineEdit_name.text(),
             ):
